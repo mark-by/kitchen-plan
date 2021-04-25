@@ -8,26 +8,13 @@ final class NavigationBarContainer {
     }
     
     class func assemble() -> NavigationBarContainer {
-        let bar = NavigationBarViewController()
-        
         let recipesContainer = RecipesContainer.assemble()
         let productsContainer = ProductsContainer.assemble()
         let profileContainer = ProfileContainer.assemble()
         
-        bar.setViewControllers([recipesContainer.viewController,
-                                productsContainer.viewController,
-                                profileContainer.viewController],
-                               animated: true)
-        
-        guard let items = bar.tabBar.items else {
-            return NavigationBarContainer(viewController: bar)
-        }
-        
-        let images = ["house", "bell", "person.circle"]
-        
-        for idx in 0..<items.count {
-            items[idx].image = UIImage(systemName: images[idx])
-        }
+        let bar = NavigationBarViewController(recipes: recipesContainer.viewController,
+                                              products: productsContainer.viewController,
+                                              profile: profileContainer.viewController)
         
         return NavigationBarContainer(viewController: bar)
     }
