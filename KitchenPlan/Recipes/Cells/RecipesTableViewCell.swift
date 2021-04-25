@@ -2,6 +2,7 @@ import UIKit
 import PinLayout
 
 final class RecipesTableViewCell: UITableViewCell {
+    private let container = UIView()
     private let titleLabel = UILabel()
     private let image = UIImageView()
     private let timeLabel = UILabel()
@@ -19,9 +20,6 @@ final class RecipesTableViewCell: UITableViewCell {
     private func setup() {
         titleLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         titleLabel.textColor = .black
-        titleLabel.backgroundColor = .white.withAlphaComponent(0.8)
-        titleLabel.layer.masksToBounds = true
-        titleLabel.layer.cornerRadius = 5
         
         backgroundColor = .white
                 
@@ -36,21 +34,34 @@ final class RecipesTableViewCell: UITableViewCell {
         
         timeLabel.font = .systemFont(ofSize: 15, weight: .semibold)
         timeLabel.textColor = .darkGray
-        timeLabel.backgroundColor = .white.withAlphaComponent(0.8)
-        timeLabel.layer.masksToBounds = true
-        timeLabel.layer.cornerRadius = 5
+        
+        image.clipsToBounds = true
         
         [image, titleLabel, timeLabel].forEach {
-            contentView.addSubview($0)
+            container.addSubview($0)
         }
+        
+        container.layer.cornerRadius = 5
+        container.clipsToBounds = true
+        
+        contentView.addSubview(container)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+
         contentView.pin
                     .horizontally(12)
                     .vertically(10)
-        contentView.clipsToBounds = true
+        
+        container.pin.all()
+        
+        image.pin
+            .width(100%)
+            .height(145)
+        
+        image.contentMode = .scaleAspectFill
+        
         
         titleLabel.pin
                     .bottom(8)
@@ -63,9 +74,6 @@ final class RecipesTableViewCell: UITableViewCell {
             .right(12)
             .height(20)
             .sizeToFit(.content)
-        
-        image.pin.all()
-        image.contentMode = .scaleAspectFill
     }
     
     func configure(with model: RecipesViewModel) {
