@@ -8,7 +8,8 @@ final class RecipesContainer {
     }
     
     class func assemble() -> RecipesContainer {
-        let recipesViewController = RecipesViewController()
+        let recipesPresenter = RecipesPresenter()
+        let recipesViewController = RecipesViewController(output: recipesPresenter)
         recipesViewController.title = "Рецепты"
 
         let viewController = UINavigationController(rootViewController: recipesViewController)

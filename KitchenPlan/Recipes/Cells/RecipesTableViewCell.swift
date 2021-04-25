@@ -2,4 +2,52 @@ import UIKit
 
 final class RecipesTableViewCell: UITableViewCell {
     private let titleLabel = UILabel()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+           
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setup() {
+        titleLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        titleLabel.textColor = .black
+        
+        backgroundColor = .white
+        
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowRadius = 2
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        contentView.layer.shadowOpacity = 0.2
+        contentView.layer.cornerRadius = 8
+        contentView.backgroundColor = UIColor.white
+        
+        selectionStyle = .none
+        
+        [titleLabel].forEach {
+            contentView.addSubview($0)
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView.pin
+                    .horizontally(12)
+                    .vertically(8)
+        
+        titleLabel.pin
+                    .bottom(8)
+                    .left(12)
+                    .height(40)
+                    .sizeToFit(.height)
+    }
+    
+    func configure(with model: RecipesViewModel) {
+        titleLabel.text = model.title
+    }
 }
