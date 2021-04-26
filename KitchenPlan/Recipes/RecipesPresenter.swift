@@ -1,10 +1,10 @@
-import Foundation
+import UIKit
 
 final class RecipesPresenter {
 //    weak var view:
     private var recipes: [RecipesViewModel] = [
-        RecipesViewModel(title: "Макароны с котлеткой"),
-        RecipesViewModel(title: "Капуста не красная")
+        RecipesViewModel(title: "Жаренная картошка с грибами и сыром", timeToCook: "50 мин", image: UIImage(data: Data.init(base64Encoded: base64ImagePotato)!)!),
+        RecipesViewModel(title: "Израильская шакшука", timeToCook: "30 мин", image: UIImage(data: Data.init(base64Encoded: base64ImageIzrailShakshua)!)!),
     ]
 }
 

@@ -22,10 +22,9 @@ final class NavigationBarViewController: UITabBarController {
         tabBar.isTranslucent = false
         tabBar.barTintColor = .white
         tabBar.tintColor = .black
-//        tabBar.unselectedItemTintColor
         tabBar.layer.shadowColor = UIColor.black.cgColor
         tabBar.layer.shadowRadius = 2
-        tabBar.layer.shadowOpacity = 0.1
+        tabBar.layer.shadowOpacity = 0.05
         tabBar.layer.shadowOffset = CGSize(width: 0, height: -3)
         tabBar.backgroundColor = .white
         setViewControllers([recipesController, productsController, profileController], animated: true)

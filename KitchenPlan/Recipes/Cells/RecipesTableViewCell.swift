@@ -64,10 +64,11 @@ final class RecipesTableViewCell: UITableViewCell {
         
         
         titleLabel.pin
-                    .bottom(8)
-                    .left(12)
-                    .height(20)
-                    .sizeToFit(.height)
+            .bottom(8)
+            .left(12)
+            .height(20)
+            .maxWidth(70%)
+            .sizeToFit(.height)
         
         timeLabel.pin
             .bottom(8)
@@ -78,8 +79,7 @@ final class RecipesTableViewCell: UITableViewCell {
     
     func configure(with model: RecipesViewModel) {
         titleLabel.text = model.title
-        timeLabel.text = "30 мин"
-
-        image.image = UIImage(data: Data.init(base64Encoded: base64Image)!)
+        timeLabel.text = model.timeToCook
+        image.image = model.image
     }
 }
