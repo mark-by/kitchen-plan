@@ -1,5 +1,6 @@
 import UIKit
 import PinLayout
+import Kingfisher
 
 final class RecipesTableViewCell: UITableViewCell {
     private let container = UIView()
@@ -80,6 +81,8 @@ final class RecipesTableViewCell: UITableViewCell {
     func configure(with model: RecipesViewModel) {
         titleLabel.text = model.title
         timeLabel.text = model.timeToCook
-        image.image = model.image
+        image.kf.setImage(
+            with: URL(string: rootImageStore + model.image),
+            placeholder: UIImage(named: "receptPlaceholder"))
     }
 }

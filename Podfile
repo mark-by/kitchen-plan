@@ -7,6 +7,7 @@ target 'KitchenPlan' do
 
   # Pods for KitchenPlan
   pod 'PinLayout'
+  pod 'Kingfisher', '~> 6.0'
 
   target 'KitchenPlanTests' do
     inherit! :search_paths
