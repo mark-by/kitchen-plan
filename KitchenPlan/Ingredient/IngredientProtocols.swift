@@ -1,31 +1,23 @@
-//
-//  IngredientProtocols.swift
-//  KitchenPlan
-//
-//  Created by Mark Bykhovets on 04.05.2021.
-//  
-//
-
 import Foundation
 
 protocol IngredientModuleInput {
 	var moduleOutput: IngredientModuleOutput? { get }
 }
 
-protocol IngredientModuleOutput: class {
+protocol IngredientModuleOutput: AnyObject {
 }
 
-protocol IngredientViewInput: class {
+protocol IngredientViewInput: AnyObject {
 }
 
-protocol IngredientViewOutput: class {
+protocol IngredientViewOutput: AnyObject {
 }
 
-protocol IngredientInteractorInput: class {
+protocol IngredientInteractorInput: AnyObject {
 }
 
-protocol IngredientInteractorOutput: class {
+protocol IngredientInteractorOutput: AnyObject {
 }
 
-protocol IngredientRouterInput: class {
+protocol IngredientRouterInput: AnyObject {
 }

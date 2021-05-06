@@ -7,6 +7,8 @@ final class ReceiptViewController: UIViewController {
     private let image = UIImageView()
     private let model: RecipesViewModel
     private let receiptTitle = UILabel()
+    private let steps = UITableView()
+    private let ingredients = UITableView()
     
     init(output: ReceiptViewOutput, model: RecipesViewModel) {
         self.output = output
@@ -39,7 +41,7 @@ final class ReceiptViewController: UIViewController {
         receiptTitle.font = .systemFont(ofSize: 24, weight: .bold)
         receiptTitle.textColor = .black
         
-        [image, receiptTitle].forEach {
+        [image, receiptTitle, steps, ingredients].forEach {
             view.addSubview($0)
         }
         
