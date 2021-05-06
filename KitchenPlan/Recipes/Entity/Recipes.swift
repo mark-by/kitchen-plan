@@ -20,7 +20,3 @@ struct ReceiptInfoResponse: Decodable {
         case image
     }
 }
-
-struct RecipesInfoResponse: Decodable {
-    let list: [ReceiptInfoResponse]
-}

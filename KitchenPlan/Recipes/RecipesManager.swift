@@ -14,7 +14,7 @@ final class RecipesManager {
 
 extension RecipesManager: RecipesManagerDescription {
     func loadRecipes(completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void) {
-        guard let url = URL(string: "http://localhost:8000/recipes?limit=10") else {
+        guard let url = URL(string: backHost + "/recipes?limit=10") else {
             completion(.failure(NetworkError.unexpected))
             return
         }

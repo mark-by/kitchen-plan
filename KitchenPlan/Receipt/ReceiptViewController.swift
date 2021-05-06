@@ -28,7 +28,7 @@ final class ReceiptViewController: UIViewController {
         view.backgroundColor = .white
         
         image.kf.setImage(
-            with: URL(string: rootImageStore + model.image),
+            with: URL(string: model.image),
             placeholder: UIImage(named: "receptPlaceholder"))
         
         title = model.title
