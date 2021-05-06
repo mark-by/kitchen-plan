@@ -1,18 +1,36 @@
 import UIKit
 
 final class RecipesPresenter {
-//    weak var view:
-    private var recipes: [RecipesViewModel] = [
-        RecipesViewModel(id: 387, title: "Жаренная картошка с грибами и сыром", timeToCook: "50 мин", image: "/recipes/387.jpg"),
-        RecipesViewModel(id: 42, title: "Израильская шакшука", timeToCook: "30 мин", image: "/recipes/42.jpg"),
-        RecipesViewModel(id: 233, title: "Запечный батат с пряными травами", timeToCook: "30 мин", image: "/recipes/233.jpg"),
-        RecipesViewModel(id: 260, title: "Зеленый салат с грушей", timeToCook: "30 мин", image: "/recipes/260.jpg"),
-        RecipesViewModel(id: 1287, title: "Белая рыба со сливочным булгуром", timeToCook: "30 мин", image: "/recipes/1287.jpg"),
-    ]
+    weak var view: RecipesViewInput?
+    let interactor: RecipesInteractorInput
+    let router: RecipesRouterInput
+    private var recipes: [RecipesViewModel] = []
+    
+    
+    init(interactor: RecipesInteractorInput, router: RecipesRouterInput) {
+        self.interactor = interactor
+        self.router = router
+    }
+    
+    func toViewModel(model: ReceiptInfoResponse) -> RecipesViewModel {
+        var time: String
+        if let unwrappedTime = model.timeToCook {
+            time = String(unwrappedTime) + " мин"
+        } else {
+            time = "~30 мин"
+        }
+        
+        return RecipesViewModel(id: model.id, title: model.title, timeToCook: time, image: model.image)
+    }
 }
 
 extension RecipesPresenter: RecipesViewOutput {
+    func didSelectItem(at index: Int) {
+        router.showReceipt(with: recipes[index])
+    }
+    
     func didLoadView() {
+        interactor.loadRecipes()
     }
     
     func count() -> Int {
@@ -23,4 +41,11 @@ extension RecipesPresenter: RecipesViewOutput {
         return recipes[idx]
     }
     
+}
+
+extension RecipesPresenter: RecipesInteractorOutput {
+    func didLoad(recipes: [ReceiptInfoResponse]) {
+        self.recipes = recipes.map { toViewModel(model: $0)}
+        self.view?.reloadData()
+    }
 }

@@ -24,11 +24,31 @@
 		6D2B8A632634A97E00324BF2 /* KitchenPlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8A622634A97E00324BF2 /* KitchenPlanTests.swift */; };
 		6D2B8A6E2634A97E00324BF2 /* KitchenPlanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8A6D2634A97E00324BF2 /* KitchenPlanUITests.swift */; };
 		6D2B8A7C2634A9CC00324BF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8A7B2634A9CC00324BF2 /* ViewController.swift */; };
+		6D5C27C32643F588002C5410 /* RecipesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5C27C22643F588002C5410 /* RecipesRouter.swift */; };
+		6D5C27C52643F615002C5410 /* RecipesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5C27C42643F615002C5410 /* RecipesInteractor.swift */; };
+		6D5C27CE26440054002C5410 /* RecipesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5C27CD26440054002C5410 /* RecipesManager.swift */; };
 		6DD29B062634E166008AFE6A /* RecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD29B052634E166008AFE6A /* RecipesTableViewCell.swift */; };
 		6DD29B082634FDC6008AFE6A /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD29B072634FDC6008AFE6A /* utils.swift */; };
-		6DD29B0B26356F54008AFE6A /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD29B0A26356F54008AFE6A /* RecipesViewModel.swift */; };
+		6DD29B0B26356F54008AFE6A /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD29B0A26356F54008AFE6A /* Recipes.swift */; };
 		6DD29B0D26357005008AFE6A /* RecipesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD29B0C26357005008AFE6A /* RecipesPresenter.swift */; };
 		6DD29B0F26363702008AFE6A /* developData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD29B0E26363702008AFE6A /* developData.swift */; };
+		6DE0C914263FEE9D00E84438 /* ReceipstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C913263FEE9D00E84438 /* ReceipstViewController.swift */; };
+		6DE0C91C26413CA200E84438 /* ReceiptsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C91B26413CA200E84438 /* ReceiptsPresenter.swift */; };
+		6DE0C91E26413CB300E84438 /* ReceiptsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C91D26413CB300E84438 /* ReceiptsInteractor.swift */; };
+		6DE0C92526413ED200E84438 /* ReceiptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C91F26413ED200E84438 /* ReceiptPresenter.swift */; };
+		6DE0C92626413ED200E84438 /* ReceiptRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C92026413ED200E84438 /* ReceiptRouter.swift */; };
+		6DE0C92726413ED200E84438 /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C92126413ED200E84438 /* ReceiptViewController.swift */; };
+		6DE0C92826413ED200E84438 /* ReceiptProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C92226413ED200E84438 /* ReceiptProtocols.swift */; };
+		6DE0C92926413ED200E84438 /* ReceiptInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C92326413ED200E84438 /* ReceiptInteractor.swift */; };
+		6DE0C92A26413ED200E84438 /* ReceiptContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C92426413ED200E84438 /* ReceiptContainer.swift */; };
+		6DE0C92E2641425800E84438 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C92D2641425800E84438 /* Receipt.swift */; };
+		6DE0C9362641433500E84438 /* IngredientPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C9302641433500E84438 /* IngredientPresenter.swift */; };
+		6DE0C9372641433500E84438 /* IngredientRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C9312641433500E84438 /* IngredientRouter.swift */; };
+		6DE0C9382641433500E84438 /* IngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C9322641433500E84438 /* IngredientViewController.swift */; };
+		6DE0C9392641433500E84438 /* IngredientProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C9332641433500E84438 /* IngredientProtocols.swift */; };
+		6DE0C93A2641433500E84438 /* IngredientInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C9342641433500E84438 /* IngredientInteractor.swift */; };
+		6DE0C93B2641433500E84438 /* IngredientContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C9352641433500E84438 /* IngredientContainer.swift */; };
+		6DE0C93E2641434E00E84438 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0C93D2641434E00E84438 /* Ingredient.swift */; };
 		A93D7A5A2A0A1D88845C35E1 /* Pods_KitchenPlan_KitchenPlanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 962D540B6EFEB6D46E0706B5 /* Pods_KitchenPlan_KitchenPlanUITests.framework */; };
 		F474437F82BA538BEFD8584A /* Pods_KitchenPlan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41251459D7A9318506FC9372 /* Pods_KitchenPlan.framework */; };
 /* End PBXBuildFile section */
@@ -75,11 +95,31 @@
 		6D2B8A6D2634A97E00324BF2 /* KitchenPlanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenPlanUITests.swift; sourceTree = "<group>"; };
 		6D2B8A6F2634A97E00324BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D2B8A7B2634A9CC00324BF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6D5C27C22643F588002C5410 /* RecipesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRouter.swift; sourceTree = "<group>"; };
+		6D5C27C42643F615002C5410 /* RecipesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesInteractor.swift; sourceTree = "<group>"; };
+		6D5C27CD26440054002C5410 /* RecipesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesManager.swift; sourceTree = "<group>"; };
 		6DD29B052634E166008AFE6A /* RecipesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTableViewCell.swift; sourceTree = "<group>"; };
 		6DD29B072634FDC6008AFE6A /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
-		6DD29B0A26356F54008AFE6A /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
+		6DD29B0A26356F54008AFE6A /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		6DD29B0C26357005008AFE6A /* RecipesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesPresenter.swift; sourceTree = "<group>"; };
 		6DD29B0E26363702008AFE6A /* developData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = developData.swift; sourceTree = "<group>"; };
+		6DE0C913263FEE9D00E84438 /* ReceipstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceipstViewController.swift; sourceTree = "<group>"; };
+		6DE0C91B26413CA200E84438 /* ReceiptsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsPresenter.swift; sourceTree = "<group>"; };
+		6DE0C91D26413CB300E84438 /* ReceiptsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsInteractor.swift; sourceTree = "<group>"; };
+		6DE0C91F26413ED200E84438 /* ReceiptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPresenter.swift; sourceTree = "<group>"; };
+		6DE0C92026413ED200E84438 /* ReceiptRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptRouter.swift; sourceTree = "<group>"; };
+		6DE0C92126413ED200E84438 /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
+		6DE0C92226413ED200E84438 /* ReceiptProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptProtocols.swift; sourceTree = "<group>"; };
+		6DE0C92326413ED200E84438 /* ReceiptInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptInteractor.swift; sourceTree = "<group>"; };
+		6DE0C92426413ED200E84438 /* ReceiptContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptContainer.swift; sourceTree = "<group>"; };
+		6DE0C92D2641425800E84438 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		6DE0C9302641433500E84438 /* IngredientPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPresenter.swift; sourceTree = "<group>"; };
+		6DE0C9312641433500E84438 /* IngredientRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientRouter.swift; sourceTree = "<group>"; };
+		6DE0C9322641433500E84438 /* IngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
+		6DE0C9332641433500E84438 /* IngredientProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientProtocols.swift; sourceTree = "<group>"; };
+		6DE0C9342641433500E84438 /* IngredientInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInteractor.swift; sourceTree = "<group>"; };
+		6DE0C9352641433500E84438 /* IngredientContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientContainer.swift; sourceTree = "<group>"; };
+		6DE0C93D2641434E00E84438 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		962D540B6EFEB6D46E0706B5 /* Pods_KitchenPlan_KitchenPlanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KitchenPlan_KitchenPlanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A38A74C5F5AAE7E23430BC /* Pods-KitchenPlanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenPlanTests.debug.xcconfig"; path = "Target Support Files/Pods-KitchenPlanTests/Pods-KitchenPlanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6FB28D8F91E281F06026296 /* Pods-KitchenPlan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KitchenPlan.debug.xcconfig"; path = "Target Support Files/Pods-KitchenPlan/Pods-KitchenPlan.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,12 +183,15 @@
 		6D02106A2634AC7500C5D2DF /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				6DD29B0926356F05008AFE6A /* Models */,
+				6DD29B0926356F05008AFE6A /* Entity */,
 				6DD29B042634E13F008AFE6A /* Cells */,
 				6D0210782634AF7100C5D2DF /* RecipesContainer.swift */,
+				6D5C27CD26440054002C5410 /* RecipesManager.swift */,
 				6D02107A2634AF8200C5D2DF /* RecipesViewControll.swift */,
 				6DD29B0C26357005008AFE6A /* RecipesPresenter.swift */,
 				6D0210802634D51100C5D2DF /* RecipesProtocols.swift */,
+				6D5C27C42643F615002C5410 /* RecipesInteractor.swift */,
+				6D5C27C22643F588002C5410 /* RecipesRouter.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -205,8 +248,11 @@
 		6D2B8A4A2634A97D00324BF2 /* KitchenPlan */ = {
 			isa = PBXGroup;
 			children = (
-				6D0210732634ACDD00C5D2DF /* NavigationBar */,
+				6DE0C92F2641431700E84438 /* Ingredient */,
+				6DE0C92B26413EE200E84438 /* Receipt */,
+				6DE0C912263FEE7F00E84438 /* Receipts */,
 				6D02106D2634AC8E00C5D2DF /* Profile */,
+				6D0210732634ACDD00C5D2DF /* NavigationBar */,
 				6D02106C2634AC8400C5D2DF /* Products */,
 				6D02106A2634AC7500C5D2DF /* Recipes */,
 				6D2B8A4B2634A97D00324BF2 /* AppDelegate.swift */,
@@ -255,12 +301,66 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		6DD29B0926356F05008AFE6A /* Models */ = {
+		6DD29B0926356F05008AFE6A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				6DD29B0A26356F54008AFE6A /* RecipesViewModel.swift */,
+				6DD29B0A26356F54008AFE6A /* Recipes.swift */,
 			);
-			path = Models;
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		6DE0C912263FEE7F00E84438 /* Receipts */ = {
+			isa = PBXGroup;
+			children = (
+				6DE0C913263FEE9D00E84438 /* ReceipstViewController.swift */,
+				6DE0C91B26413CA200E84438 /* ReceiptsPresenter.swift */,
+				6DE0C91D26413CB300E84438 /* ReceiptsInteractor.swift */,
+			);
+			path = Receipts;
+			sourceTree = "<group>";
+		};
+		6DE0C92B26413EE200E84438 /* Receipt */ = {
+			isa = PBXGroup;
+			children = (
+				6DE0C92C2641423600E84438 /* Entity */,
+				6DE0C91F26413ED200E84438 /* ReceiptPresenter.swift */,
+				6DE0C92026413ED200E84438 /* ReceiptRouter.swift */,
+				6DE0C92126413ED200E84438 /* ReceiptViewController.swift */,
+				6DE0C92226413ED200E84438 /* ReceiptProtocols.swift */,
+				6DE0C92326413ED200E84438 /* ReceiptInteractor.swift */,
+				6DE0C92426413ED200E84438 /* ReceiptContainer.swift */,
+			);
+			path = Receipt;
+			sourceTree = "<group>";
+		};
+		6DE0C92C2641423600E84438 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				6DE0C92D2641425800E84438 /* Receipt.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		6DE0C92F2641431700E84438 /* Ingredient */ = {
+			isa = PBXGroup;
+			children = (
+				6DE0C93C2641434000E84438 /* Entity */,
+				6DE0C9302641433500E84438 /* IngredientPresenter.swift */,
+				6DE0C9312641433500E84438 /* IngredientRouter.swift */,
+				6DE0C9322641433500E84438 /* IngredientViewController.swift */,
+				6DE0C9332641433500E84438 /* IngredientProtocols.swift */,
+				6DE0C9342641433500E84438 /* IngredientInteractor.swift */,
+				6DE0C9352641433500E84438 /* IngredientContainer.swift */,
+			);
+			path = Ingredient;
+			sourceTree = "<group>";
+		};
+		6DE0C93C2641434000E84438 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				6DE0C93D2641434E00E84438 /* Ingredient.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,18 +603,38 @@
 				6D0210752634AE2500C5D2DF /* ProductsViewController.swift in Sources */,
 				6DD29B0F26363702008AFE6A /* developData.swift in Sources */,
 				6DD29B082634FDC6008AFE6A /* utils.swift in Sources */,
+				6DE0C914263FEE9D00E84438 /* ReceipstViewController.swift in Sources */,
 				6D0210812634D51100C5D2DF /* RecipesProtocols.swift in Sources */,
+				6DE0C92E2641425800E84438 /* Receipt.swift in Sources */,
+				6DE0C93E2641434E00E84438 /* Ingredient.swift in Sources */,
 				6D2B8A4C2634A97D00324BF2 /* AppDelegate.swift in Sources */,
+				6DE0C91C26413CA200E84438 /* ReceiptsPresenter.swift in Sources */,
+				6DE0C9392641433500E84438 /* IngredientProtocols.swift in Sources */,
+				6DE0C92926413ED200E84438 /* ReceiptInteractor.swift in Sources */,
+				6DE0C9362641433500E84438 /* IngredientPresenter.swift in Sources */,
 				6DD29B0D26357005008AFE6A /* RecipesPresenter.swift in Sources */,
 				6D2B8A4E2634A97D00324BF2 /* SceneDelegate.swift in Sources */,
+				6DE0C92726413ED200E84438 /* ReceiptViewController.swift in Sources */,
+				6DE0C9382641433500E84438 /* IngredientViewController.swift in Sources */,
+				6DE0C9372641433500E84438 /* IngredientRouter.swift in Sources */,
 				6D0210702634ACA900C5D2DF /* ProfileViewController.swift in Sources */,
 				6D02107D2634B08400C5D2DF /* NavigationBarViewController.swift in Sources */,
+				6D5C27C32643F588002C5410 /* RecipesRouter.swift in Sources */,
 				6D0210772634AE3100C5D2DF /* ProductsContainer.swift in Sources */,
+				6D5C27CE26440054002C5410 /* RecipesManager.swift in Sources */,
 				6D2B8A7C2634A9CC00324BF2 /* ViewController.swift in Sources */,
 				6D02107F2634B0CB00C5D2DF /* NavigationBarContainer.swift in Sources */,
+				6DE0C92526413ED200E84438 /* ReceiptPresenter.swift in Sources */,
+				6DE0C92626413ED200E84438 /* ReceiptRouter.swift in Sources */,
+				6DE0C92A26413ED200E84438 /* ReceiptContainer.swift in Sources */,
 				6DD29B062634E166008AFE6A /* RecipesTableViewCell.swift in Sources */,
+				6DE0C93A2641433500E84438 /* IngredientInteractor.swift in Sources */,
+				6D5C27C52643F615002C5410 /* RecipesInteractor.swift in Sources */,
+				6DE0C92826413ED200E84438 /* ReceiptProtocols.swift in Sources */,
+				6DE0C93B2641433500E84438 /* IngredientContainer.swift in Sources */,
 				6D0210722634ACB700C5D2DF /* ProfileContainer.swift in Sources */,
-				6DD29B0B26356F54008AFE6A /* RecipesViewModel.swift in Sources */,
+				6DD29B0B26356F54008AFE6A /* Recipes.swift in Sources */,
+				6DE0C91E26413CB300E84438 /* ReceiptsInteractor.swift in Sources */,
 				6D02107B2634AF8200C5D2DF /* RecipesViewControll.swift in Sources */,
 				6D0210792634AF7100C5D2DF /* RecipesContainer.swift in Sources */,
 			);

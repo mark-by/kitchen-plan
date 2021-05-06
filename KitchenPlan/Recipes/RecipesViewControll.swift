@@ -30,6 +30,7 @@ final class RecipesViewController: UIViewController {
         tableView.dataSource = self
 
         view.addSubview(tableView)
+        output.didLoadView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,13 +63,13 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let city = output.item(idx: indexPath.row)
-        let viewController = UIViewController()
-        viewController.title = city.title
-        viewController.view.backgroundColor = .white
-            
-        let navigationController = UINavigationController(rootViewController: viewController)
-            
-        present(navigationController, animated: true, completion: nil)
+        output.didSelectItem(at: indexPath.row)
+    }
+}
+
+extension RecipesViewController: RecipesViewInput {
+    func reloadData() {
+        self.tableView.refreshControl?.endRefreshing()
+        self.tableView.reloadData()
     }
 }

@@ -82,7 +82,7 @@ final class RecipesTableViewCell: UITableViewCell {
         titleLabel.text = model.title
         timeLabel.text = model.timeToCook
         image.kf.setImage(
-            with: URL(string: rootImageStore + model.image),
+            with: URL(string: model.image),
             placeholder: UIImage(named: "receptPlaceholder"))
     }
 }
