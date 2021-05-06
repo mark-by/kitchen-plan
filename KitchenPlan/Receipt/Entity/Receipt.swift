@@ -1,6 +1,6 @@
 import Foundation
 
-struct Receipt {
+struct Receipt: Decodable {
     let id: Int
     let image: String
     let title: String
@@ -8,4 +8,14 @@ struct Receipt {
     let type: String
     let steps: [String]
     let ingredients: [Ingredient]
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case image
+        case title
+        case time = "time_to_cook"
+        case type
+        case steps
+        case ingredients
+    }
 }

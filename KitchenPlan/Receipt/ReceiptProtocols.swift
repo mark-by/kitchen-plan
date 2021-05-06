@@ -8,9 +8,11 @@ protocol ReceiptModuleOutput: AnyObject {
 }
 
 protocol ReceiptViewInput: AnyObject {
+    func loadData(with model: Receipt)
 }
 
 protocol ReceiptViewOutput: AnyObject {
+    func didLoadView()
 }
 
 protocol ReceiptInteractorInput: AnyObject {
@@ -18,7 +20,7 @@ protocol ReceiptInteractorInput: AnyObject {
 }
 
 protocol ReceiptInteractorOutput: AnyObject {
-    func didLoad()
+    func didLoad(with model: Receipt)
 }
 
 protocol ReceiptRouterInput: AnyObject {

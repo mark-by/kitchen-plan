@@ -5,15 +5,14 @@ final class ReceiptContainer {
 	let viewController: UIViewController
 	private(set) weak var router: ReceiptRouterInput!
 
-    class func assemble(with city: RecipesViewModel) -> ReceiptContainer {
+    class func assemble(with model: RecipesViewModel) -> ReceiptContainer {
         let router = ReceiptRouter()
         let interactor = ReceiptInteractor()
         let presenter = ReceiptPresenter(router: router, interactor: interactor)
-		let viewController = ReceiptViewController(output: presenter, city: city)
+		let viewController = ReceiptViewController(output: presenter, model: model)
 
 		presenter.view = viewController
-//		presenter.moduleOutput = context.moduleOutput
-
+        presenter.receiptId = model.id
 		interactor.output = presenter
 
         return ReceiptContainer(view: viewController, input: presenter, router: router)

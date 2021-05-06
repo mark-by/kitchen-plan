@@ -8,9 +8,9 @@ final class ReceiptViewController: UIViewController {
     private let model: RecipesViewModel
     private let receiptTitle = UILabel()
     
-    init(output: ReceiptViewOutput, city: RecipesViewModel) {
+    init(output: ReceiptViewOutput, model: RecipesViewModel) {
         self.output = output
-        self.model = city
+        self.model = model
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,6 +42,8 @@ final class ReceiptViewController: UIViewController {
         [image, receiptTitle].forEach {
             view.addSubview($0)
         }
+        
+        self.output.didLoadView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,4 +65,8 @@ final class ReceiptViewController: UIViewController {
 }
 
 extension ReceiptViewController: ReceiptViewInput {
+    func loadData(with model: Receipt) {
+        print("GET RECEIPT IN VIEW: ", model)
+    }
+    
 }
