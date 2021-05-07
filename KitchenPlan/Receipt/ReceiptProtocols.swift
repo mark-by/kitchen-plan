@@ -13,6 +13,7 @@ protocol ReceiptViewInput: AnyObject {
 
 protocol ReceiptViewOutput: AnyObject {
     func didLoadView()
+    func getModel() -> ReceiptModelView?
 }
 
 protocol ReceiptInteractorInput: AnyObject {

@@ -4,7 +4,7 @@ struct Receipt: Decodable {
     let id: Int
     let image: String
     let title: String
-    let time: Int
+    let time: Int?
     let type: String
     let steps: [String]
     let ingredients: [Ingredient]
@@ -18,4 +18,10 @@ struct Receipt: Decodable {
         case steps
         case ingredients
     }
+}
+
+struct ReceiptModelView {
+    let type: String
+    let steps: [String]
+    let ingredients: [String]
 }
