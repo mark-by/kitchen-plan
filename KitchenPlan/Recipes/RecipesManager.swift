@@ -5,7 +5,7 @@ enum NetworkError: Error {
 }
 
 protocol RecipesManagerDescription: AnyObject {
-    func loadRecipes(completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void)
+    func loadRecipes(since: Int, limit: Int, completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void)
 }
 
 final class RecipesManager {
@@ -13,8 +13,8 @@ final class RecipesManager {
 }
 
 extension RecipesManager: RecipesManagerDescription {
-    func loadRecipes(completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void) {
-        guard let url = URL(string: backHost + "/recipes?limit=10") else {
+    func loadRecipes(since: Int, limit: Int, completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void) {
+        guard let url = URL(string: backHost + "/recipes?since=\(since)&limit=\(limit)") else {
             completion(.failure(NetworkError.unexpected))
             return
         }

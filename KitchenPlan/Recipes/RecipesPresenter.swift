@@ -29,8 +29,12 @@ extension RecipesPresenter: RecipesViewOutput {
         router.showReceipt(with: recipes[index])
     }
     
+    func didScrollEnd() {
+        interactor.loadRecipes(since: self.recipes.last?.id ?? 0, limit: 5)
+    }
+    
     func didLoadView() {
-        interactor.loadRecipes()
+        interactor.loadRecipes(since: 0, limit: 5)
     }
     
     func count() -> Int {
@@ -45,7 +49,7 @@ extension RecipesPresenter: RecipesViewOutput {
 
 extension RecipesPresenter: RecipesInteractorOutput {
     func didLoad(recipes: [ReceiptInfoResponse]) {
-        self.recipes = recipes.map { toViewModel(model: $0)}
+        self.recipes.append(contentsOf: recipes.map { toViewModel(model: $0)})
         self.view?.reloadData()
     }
 }

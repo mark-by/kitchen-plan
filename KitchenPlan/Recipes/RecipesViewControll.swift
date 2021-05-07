@@ -73,3 +73,12 @@ extension RecipesViewController: RecipesViewInput {
         self.tableView.reloadData()
     }
 }
+
+extension RecipesViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > tableView.contentSize.height - 100 - scrollView.frame.size.height && tableView.contentSize.height != 0 {
+            output.didScrollEnd()
+        }
+    }
+}

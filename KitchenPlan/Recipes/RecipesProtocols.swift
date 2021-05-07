@@ -2,6 +2,7 @@ import UIKit
 
 protocol RecipesViewOutput: AnyObject {
     func didLoadView()
+    func didScrollEnd()
     func count() -> Int
     func item(idx: Int) -> RecipesViewModel
     func didSelectItem(at index: Int)
@@ -12,7 +13,7 @@ protocol RecipesViewInput: AnyObject {
 }
 
 protocol RecipesInteractorInput: AnyObject {
-    func loadRecipes()
+    func loadRecipes(since: Int, limit: Int)
 }
 
 protocol RecipesRouterInput: AnyObject {
