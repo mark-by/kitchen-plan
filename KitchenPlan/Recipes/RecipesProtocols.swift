@@ -23,4 +23,5 @@ protocol RecipesRouterInput: AnyObject {
 
 protocol RecipesInteractorOutput: AnyObject {
     func didLoad(recipes: [ReceiptInfoResponse])
+    func didReceive()
 }

@@ -55,6 +55,10 @@ extension RecipesPresenter: RecipesViewOutput {
         interactor.loadRecipes(since: 0, limit: 5, title: text, type: nil)
     }
     
+    func didReceive() {
+        view?.reloadData()
+    }
+    
     func count() -> Int {
         return recipes.count
     }

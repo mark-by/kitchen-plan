@@ -20,8 +20,13 @@ final class RecipesViewController: UIViewController {
         if let bar = navigationController?.navigationBar {
             overrideNavigateBar(bar)
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(didTapFilterButton))
+        overrideUserInterfaceStyle = .light
         searchContoller.searchResultsUpdater = self
         searchContoller.obscuresBackgroundDuringPresentation = false
+        searchContoller.searchBar.placeholder = "Поиск рецептов"
+        searchContoller.overrideUserInterfaceStyle = .light
         navigationItem.searchController = searchContoller
                 
         view.backgroundColor = .white
@@ -40,6 +45,10 @@ final class RecipesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.pin.all()
+    }
+    
+    @objc func didTapFilterButton() {
+        
     }
 }
 
