@@ -6,6 +6,7 @@ final class TypePicker: UIViewController {
     private let picker = UIPickerView()
     private let doneButton = UIButton()
     var output: RecipesViewOutput?
+    weak var mainViewController: RecipesViewController?
     
     override func viewDidLoad() {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
@@ -16,13 +17,26 @@ final class TypePicker: UIViewController {
         
         picker.dataSource = self
         picker.delegate = self
-        
+        selectDefault()
         doneButton.setTitle("OK", for: .normal)
         doneButton.setTitleColor(.lightGray, for: .normal)
         doneButton.titleLabel?.font = .systemFont(ofSize: 40, weight: .light)
         doneButton.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
         [picker, doneButton].forEach {
             view.addSubview($0)
+        }
+    }
+    
+    func selectDefault() {
+        guard let title = mainViewController?.title else {
+            return
+        }
+        let type = String(title.dropLast())
+        let found = data.firstIndex(of: type)
+        if let unwrapFound = found {
+            picker.selectRow(unwrapFound, inComponent: 0, animated: true)
+        } else {
+            picker.selectRow(0, inComponent: 0, animated: true)
         }
     }
     
@@ -34,6 +48,15 @@ final class TypePicker: UIViewController {
     @objc func didTapDoneButton() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func toTitle(type: String) -> String {
+        switch type {
+        case "Завтрак":
+            return "Завтраки"
+        default:
+            return type + "ы"
+        }
+    }
 }
 
 extension TypePicker: UIPickerViewDataSource {
@@ -44,8 +67,6 @@ extension TypePicker: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return data.count
     }
-    
-    
 }
 
 extension TypePicker: UIPickerViewDelegate {
@@ -57,8 +78,10 @@ extension TypePicker: UIPickerViewDelegate {
         var selectedType: String?
         if data[row] == "Все" {
             selectedType = nil
+            mainViewController?.title = "Рецепты"
         } else {
             selectedType = data[row]
+            mainViewController?.title = toTitle(type: data[row])
         }
         output?.didSelectType(type: selectedType)
     }

@@ -49,6 +49,7 @@ final class RecipesViewController: UIViewController {
     @objc func showTypeSelector() {
         let typePicker = TypePicker()
         typePicker.output = output
+        typePicker.mainViewController = self
         present(typePicker, animated: true, completion: nil)
     }
     
