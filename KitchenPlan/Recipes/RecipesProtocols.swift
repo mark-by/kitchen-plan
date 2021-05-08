@@ -4,6 +4,7 @@ protocol RecipesViewOutput: AnyObject {
     func didLoadView()
     func didScrollEnd()
     func didSearch(text: String)
+    func didSelectType(type: String?)
     func count() -> Int
     func item(idx: Int) -> RecipesViewModel
     func didSelectItem(at index: Int)

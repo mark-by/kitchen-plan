@@ -7,6 +7,7 @@ final class RecipesPresenter {
     private var recipes: [RecipesViewModel] = []
     
     private var searchText: String?
+    private var searchType: String?
     
     
     init(interactor: RecipesInteractorInput, router: RecipesRouterInput) {
@@ -32,7 +33,7 @@ extension RecipesPresenter: RecipesViewOutput {
     }
     
     func didScrollEnd() {
-        interactor.loadRecipes(since: self.recipes.last?.id ?? 0, limit: 5, title: searchText, type: nil)
+        interactor.loadRecipes(since: self.recipes.last?.id ?? 0, limit: 5, title: searchText, type: searchType)
     }
     
     func didLoadView() {
@@ -52,7 +53,16 @@ extension RecipesPresenter: RecipesViewOutput {
         }
         self.searchText = text
         self.recipes = []
-        interactor.loadRecipes(since: 0, limit: 5, title: text, type: nil)
+        interactor.loadRecipes(since: 0, limit: 5, title: text, type: searchType)
+    }
+    
+    func didSelectType(type: String?) {
+        if searchType == type {
+            return
+        }
+        searchType = type
+        self.recipes = []
+        interactor.loadRecipes(since: 0, limit: 5, title: searchText, type: searchType)
     }
     
     func didReceive() {

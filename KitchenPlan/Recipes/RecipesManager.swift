@@ -29,7 +29,7 @@ extension RecipesManager: RecipesManagerDescription {
             }
         }
         if let unwrappedType = type {
-            path += "&type=\(unwrappedType)"
+            path += "&type=\(unwrappedType.uppercased())"
         }
         path = path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? path
         guard let url = URL(string: backHost + path) else {

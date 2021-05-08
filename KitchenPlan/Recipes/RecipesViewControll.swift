@@ -5,6 +5,7 @@ final class RecipesViewController: UIViewController {
     private let tableView = UITableView()
     private let output: RecipesViewOutput
     private let searchContoller = UISearchController()
+    private var typeButton: UIBarButtonItem?
 
     init(output: RecipesViewOutput) {
         self.output = output
@@ -20,8 +21,11 @@ final class RecipesViewController: UIViewController {
         if let bar = navigationController?.navigationBar {
             overrideNavigateBar(bar)
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+        let filter = UIBarButtonItem(
             image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(didTapFilterButton))
+        typeButton = UIBarButtonItem(title: "Тип", style: .plain, target: self, action: #selector(showTypeSelector))
+
+        navigationItem.rightBarButtonItems = [filter, typeButton!]
         overrideUserInterfaceStyle = .light
         searchContoller.searchResultsUpdater = self
         searchContoller.obscuresBackgroundDuringPresentation = false
@@ -40,6 +44,12 @@ final class RecipesViewController: UIViewController {
 
         view.addSubview(tableView)
         output.didLoadView()
+    }
+    
+    @objc func showTypeSelector() {
+        let typePicker = TypePicker()
+        typePicker.output = output
+        present(typePicker, animated: true, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
