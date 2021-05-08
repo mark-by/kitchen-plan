@@ -27,10 +27,15 @@ final class ReceiptViewController: UIViewController {
         table.backgroundColor = .white
         table.separatorStyle = .none
         
+        let tableHeaderHeight = CGFloat(40)
+        let tableWidth = self.table.bounds.size.width
+        let tableFrame = CGRect(x: 0, y: 0, width: tableWidth , height: tableHeaderHeight)
+        self.table.tableHeaderView = UIView(frame: tableFrame)
+        table.contentInset = UIEdgeInsets(top: -tableHeaderHeight, left: 0, bottom: 0, right: 0)
+        
         table.delegate = self
         table.dataSource = self
 
-//        table.register(MainReceiptInfoCell.self, forCellReuseIdentifier: "MainInfo")
         [table].forEach {
             view.addSubview($0)
         }
