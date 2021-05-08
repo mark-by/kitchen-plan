@@ -3,6 +3,7 @@ import UIKit
 protocol RecipesViewOutput: AnyObject {
     func didLoadView()
     func didScrollEnd()
+    func didSearch(text: String)
     func count() -> Int
     func item(idx: Int) -> RecipesViewModel
     func didSelectItem(at index: Int)
@@ -13,7 +14,7 @@ protocol RecipesViewInput: AnyObject {
 }
 
 protocol RecipesInteractorInput: AnyObject {
-    func loadRecipes(since: Int, limit: Int)
+    func loadRecipes(since: Int, limit: Int, title: String?, type: String?)
 }
 
 protocol RecipesRouterInput: AnyObject {

@@ -4,6 +4,7 @@ import PinLayout
 final class RecipesViewController: UIViewController {
     private let tableView = UITableView()
     private let output: RecipesViewOutput
+    private let searchContoller = UISearchController()
 
     init(output: RecipesViewOutput) {
         self.output = output
@@ -19,7 +20,10 @@ final class RecipesViewController: UIViewController {
         if let bar = navigationController?.navigationBar {
             overrideNavigateBar(bar)
         }
-        
+        searchContoller.searchResultsUpdater = self
+        searchContoller.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchContoller
+                
         view.backgroundColor = .white
         
         tableView.register(RecipesTableViewCell.self, forCellReuseIdentifier: "RecipesTableViewCell")
@@ -80,5 +84,14 @@ extension RecipesViewController: UIScrollViewDelegate {
         if position > tableView.contentSize.height - 100 - scrollView.frame.size.height && tableView.contentSize.height != 0 {
             output.didScrollEnd()
         }
+    }
+}
+
+extension RecipesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        output.didSearch(text: text)
     }
 }

@@ -5,7 +5,11 @@ enum NetworkError: Error {
 }
 
 protocol RecipesManagerDescription: AnyObject {
-    func loadRecipes(since: Int, limit: Int, completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void)
+    func loadRecipes(since: Int,
+                     limit: Int,
+                     title: String?,
+                     type: String?,
+                     completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void)
 }
 
 final class RecipesManager {
@@ -13,8 +17,22 @@ final class RecipesManager {
 }
 
 extension RecipesManager: RecipesManagerDescription {
-    func loadRecipes(since: Int, limit: Int, completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void) {
-        guard let url = URL(string: backHost + "/recipes?since=\(since)&limit=\(limit)") else {
+    func loadRecipes(since: Int,
+                     limit: Int,
+                     title: String? = nil,
+                     type: String? = nil,
+                     completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void) {
+        var path = "/recipes?since=\(since)&limit=\(limit)"
+        if let unwrappedTitle = title {
+            if unwrappedTitle != "" {
+                path += "&title=\(unwrappedTitle)"
+            }
+        }
+        if let unwrappedType = type {
+            path += "&type=\(unwrappedType)"
+        }
+        path = path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? path
+        guard let url = URL(string: backHost + path) else {
             completion(.failure(NetworkError.unexpected))
             return
         }
