@@ -23,9 +23,8 @@ final class RecipesViewController: UIViewController {
         }
         let filter = UIBarButtonItem(
             image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(didTapFilterButton))
-        typeButton = UIBarButtonItem(title: "Тип", style: .plain, target: self, action: #selector(showTypeSelector))
 
-        navigationItem.rightBarButtonItems = [filter, typeButton!]
+        navigationItem.rightBarButtonItem = filter
         overrideUserInterfaceStyle = .light
         searchContoller.searchResultsUpdater = self
         searchContoller.obscuresBackgroundDuringPresentation = false
@@ -46,20 +45,16 @@ final class RecipesViewController: UIViewController {
         output.didLoadView()
     }
     
-    @objc func showTypeSelector() {
-        let typePicker = TypePicker()
-        typePicker.output = output
-        typePicker.mainViewController = self
-        present(typePicker, animated: true, completion: nil)
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.pin.all()
     }
     
     @objc func didTapFilterButton() {
-        
+        let typePicker = TypePicker()
+        typePicker.output = output
+        typePicker.mainViewController = self
+        present(typePicker, animated: true, completion: nil)
     }
 }
 

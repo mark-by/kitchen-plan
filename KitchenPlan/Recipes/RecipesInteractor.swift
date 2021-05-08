@@ -7,13 +7,14 @@ final class RecipesInteractor {
 }
 
 extension RecipesInteractor: RecipesInteractorInput {
-    func loadRecipes(since: Int, limit: Int, title: String? = nil, type: String? = nil) {
+    func loadRecipes(since: Int, limit: Int, title: String? = nil, type: String? = nil, ingredients: [Int]) {
         if isFetching {
             return
         }
         
         isFetching = true
-        recipesManager.loadRecipes(since: since, limit: limit, title: title, type: type) { [weak self] (result) in
+        recipesManager.loadRecipes(since: since, limit: limit,
+                                   title: title, type: type, ingredients: ingredients) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let recipes):
@@ -26,5 +27,10 @@ extension RecipesInteractor: RecipesInteractorInput {
                 }
             }
         }
+    }
+    
+    func havingIngredients() -> [Int] {
+//        return [1,2,3,4,5,6,7,8,9,10]
+        return []
     }
 }

@@ -9,6 +9,7 @@ protocol RecipesManagerDescription: AnyObject {
                      limit: Int,
                      title: String?,
                      type: String?,
+                     ingredients: [Int],
                      completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void)
 }
 
@@ -21,18 +22,14 @@ extension RecipesManager: RecipesManagerDescription {
                      limit: Int,
                      title: String? = nil,
                      type: String? = nil,
+                     ingredients: [Int],
                      completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void) {
-        var path = "/recipes?since=\(since)&limit=\(limit)"
-        if let unwrappedTitle = title {
-            if unwrappedTitle != "" {
-                path += "&title=\(unwrappedTitle)"
-            }
-        }
-        if let unwrappedType = type {
-            path += "&type=\(unwrappedType.uppercased())"
-        }
-        path = path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? path
-        guard let url = URL(string: backHost + path) else {
+        
+        guard let url = URL(string: backHost + genPath(since: since,
+                                                       limit: limit,
+                                                       title: title,
+                                                       type: type,
+                                                       ingredients: ingredients)) else {
             completion(.failure(NetworkError.unexpected))
             return
         }
@@ -59,5 +56,27 @@ extension RecipesManager: RecipesManagerDescription {
         }
         
         task.resume()
+    }
+    
+    func genPath(since: Int, limit: Int, title: String?, type: String?, ingredients: [Int]) -> String {
+        var path = "/recipes?since=\(since)&limit=\(limit)"
+        if let unwrappedTitle = title {
+            if unwrappedTitle != "" {
+                path += "&title=\(unwrappedTitle)"
+            }
+        }
+        if let unwrappedType = type {
+            path += "&type=\(unwrappedType.uppercased())"
+        }
+        if ingredients.count > 0 {
+            path += genIngredientsQueryArgs(ingredients: ingredients)
+        }
+        return path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? path
+    }
+    
+    func genIngredientsQueryArgs(ingredients: [Int]) -> String {
+        return ingredients.reduce("") { prev, curr in
+            "\(prev)&ingredients=\(curr)"
+        }
     }
 }
