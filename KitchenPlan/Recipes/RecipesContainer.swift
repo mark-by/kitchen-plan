@@ -13,7 +13,12 @@ final class RecipesContainer {
         let presenter = RecipesPresenter(interactor: interactor, router: router)
         
         let recipesViewController = RecipesViewController(output: presenter)
-        recipesViewController.title = "Рецепты"
+        let userDefaults = UserDefaults()
+        if let type = userDefaults.string(forKey: "receipt_type") {
+            recipesViewController.title = type
+        } else {
+            recipesViewController.title = "Рецепты"
+        }
         
         router.sourceViewController = recipesViewController
         interactor.output = presenter

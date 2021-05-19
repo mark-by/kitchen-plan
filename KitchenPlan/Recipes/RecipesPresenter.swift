@@ -46,9 +46,19 @@ extension RecipesPresenter: RecipesViewOutput {
     }
     
     func didLoadView() {
+        setDefautlType()
         interactor.loadRecipes(since: 0, limit: 5,
-                               title: nil, type: nil,
+                               title: nil, type: searchType,
                                ingredients: [])
+    }
+    
+    func setDefautlType() {
+        let userDefaults = UserDefaults()
+        if let type = userDefaults.string(forKey: "receipt_type") {
+            searchType = String(type.dropLast())
+        } else {
+            searchType = nil
+        }
     }
     
     func didSearch(text: String) {

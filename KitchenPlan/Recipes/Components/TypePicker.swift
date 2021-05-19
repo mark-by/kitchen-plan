@@ -29,7 +29,8 @@ final class TypePicker: UIViewController {
     }
     
     func selectDefault() {
-        guard let title = mainViewController?.title else {
+        let userDefaults = UserDefaults()
+        guard let title = userDefaults.string(forKey: "receipt_type") else {
             return
         }
         picker.selectRow(data.firstIndex(of: title) ?? 0, inComponent: 0, animated: true)
@@ -88,12 +89,15 @@ extension TypePicker: UIPickerViewDelegate {
         switch component {
         case 0:
             var selectedType: String?
+            let userDefaults = UserDefaults()
             if data[row] == "Все" {
                 selectedType = nil
                 mainViewController?.title = "Рецепты"
+                userDefaults.setValue("Рецепты", forKey: "receipt_type")
             } else {
                 selectedType = String(data[row].dropLast())
                 mainViewController?.title = data[row]
+                userDefaults.setValue(data[row], forKey: "receipt_type")
             }
             output?.didSelectType(type: selectedType)
         case 1:
