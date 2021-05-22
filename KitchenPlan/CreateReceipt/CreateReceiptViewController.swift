@@ -35,7 +35,11 @@ final class CreateReceiptViewController: UIViewController {
         table.separatorStyle = .none
         table.overrideUserInterfaceStyle = .light
         
-        overrideNavigateBar(navigationController?.navigationBar)
+        navigationController?.navigationBar.overrideUserInterfaceStyle = .light
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapSave))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapSave))
         
         table.delegate = self
         table.dataSource = self
@@ -51,6 +55,14 @@ final class CreateReceiptViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         table.pin.all()
+    }
+    
+    @objc func didTapSave() {
+        
+    }
+    
+    @objc func didTapClose() {
+        
     }
     
     func didTapButton(section: Int, row: Int) {
@@ -130,7 +142,7 @@ extension CreateReceiptViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        30
+        return 30
     }
 }
 
