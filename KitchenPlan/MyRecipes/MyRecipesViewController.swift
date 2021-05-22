@@ -26,7 +26,7 @@ final class MyRecipesViewController: UIViewController {
 	}
     
     @objc func didTapAddButton() {
-        
+        output.didTapAdd()
     }
 }
 

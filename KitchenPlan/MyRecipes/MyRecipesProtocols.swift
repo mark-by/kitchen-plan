@@ -4,20 +4,22 @@ protocol MyRecipesModuleInput {
 	var moduleOutput: MyRecipesModuleOutput? { get }
 }
 
-protocol MyRecipesModuleOutput: class {
+protocol MyRecipesModuleOutput: AnyObject {
 }
 
-protocol MyRecipesViewInput: class {
+protocol MyRecipesViewInput: AnyObject {
 }
 
-protocol MyRecipesViewOutput: class {
+protocol MyRecipesViewOutput: AnyObject {
+    func didTapAdd()
 }
 
-protocol MyRecipesInteractorInput: class {
+protocol MyRecipesInteractorInput: AnyObject {
 }
 
-protocol MyRecipesInteractorOutput: class {
+protocol MyRecipesInteractorOutput: AnyObject {
 }
 
-protocol MyRecipesRouterInput: class {
+protocol MyRecipesRouterInput: AnyObject {
+    func showCreateReceipt()
 }

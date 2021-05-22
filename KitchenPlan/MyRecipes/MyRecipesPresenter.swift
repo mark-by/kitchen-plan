@@ -17,6 +17,9 @@ extension MyRecipesPresenter: MyRecipesModuleInput {
 }
 
 extension MyRecipesPresenter: MyRecipesViewOutput {
+    func didTapAdd() {
+        router.showCreateReceipt()
+    }
 }
 
 extension MyRecipesPresenter: MyRecipesInteractorOutput {

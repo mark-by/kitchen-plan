@@ -12,6 +12,7 @@ final class MyRecipesContainer {
 		let viewController = MyRecipesViewController(output: presenter)
 
 		presenter.view = viewController
+        router.sourceViewController = viewController
         presenter.moduleOutput = context?.moduleOutput
 
 		interactor.output = presenter
