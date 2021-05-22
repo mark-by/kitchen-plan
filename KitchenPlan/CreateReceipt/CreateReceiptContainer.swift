@@ -16,7 +16,7 @@ final class CreateReceiptContainer {
 
 		interactor.output = presenter
 
-        return CreateReceiptContainer(view: viewController, input: presenter, router: router)
+        return CreateReceiptContainer(view: UINavigationController(rootViewController: viewController), input: presenter, router: router)
 	}
 
     private init(view: UIViewController, input: CreateReceiptModuleInput, router: CreateReceiptRouterInput) {

@@ -6,6 +6,8 @@ final class CreateReceiptPresenter {
 
 	private let router: CreateReceiptRouterInput
 	private let interactor: CreateReceiptInteractorInput
+    
+    private var ingredients = [String]()
 
     init(router: CreateReceiptRouterInput, interactor: CreateReceiptInteractorInput) {
         self.router = router
