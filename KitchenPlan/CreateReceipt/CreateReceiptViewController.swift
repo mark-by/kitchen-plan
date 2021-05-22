@@ -6,12 +6,12 @@ struct Section {
     var cells: [UITableViewCell]
 }
 
-final class CreateReceiptViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class CreateReceiptViewController: UIViewController {
 	private let output: CreateReceiptViewOutput
     private var sections = [
         Section(title: "", cells: [CreateReceiptImageCell(), CreateReceiptTitleCell()]),
-        Section(title: "Ингредиенты", cells: [CreateReceiptIngredientsCell()]),
-        Section(title: "Шаги", cells: [CreateReceiptStepCell()])
+        Section(title: "Ингредиенты", cells: [CreateReceiptTextFieldCell()]),
+        Section(title: "Шаги", cells: [CreateReceiptTextFieldCell()])
     ]
     private let table = UITableView()
 
@@ -33,6 +33,9 @@ final class CreateReceiptViewController: UIViewController, UITableViewDelegate, 
         
         table.backgroundColor = .white
         table.separatorStyle = .none
+        table.overrideUserInterfaceStyle = .light
+        
+        overrideNavigateBar(navigationController?.navigationBar)
         
         let tableHeaderHeight = CGFloat(40)
         let tableWidth = self.table.bounds.size.width
@@ -50,6 +53,25 @@ final class CreateReceiptViewController: UIViewController, UITableViewDelegate, 
         }
 	}
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        table.pin.all()
+    }
+    
+    func didTapButton(section: Int, row: Int) {
+        let cell = CreateReceiptTextFieldCell()
+        cell.setMinusImage()
+        sections[section].cells.append(cell)
+        table.reloadData()
+    }
+}
+
+extension CreateReceiptViewController: CreateReceiptViewInput {
+    
+}
+
+extension CreateReceiptViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -60,25 +82,31 @@ final class CreateReceiptViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sections[indexPath.section].cells[indexPath.row]
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+        if indexPath.section == 0 {
+            return cell
+        }
         
-        table.pin.all()
+        guard let cell = cell as? CreateReceiptTextFieldCell else {
+            return .init()
+        }
+        
+        if indexPath.section == 1 {
+            cell.configure(output: self, title: "ингредиент", section: indexPath.section, row: indexPath.row)
+        } else {
+            cell.configure(output: self, title: "шаг", section: indexPath.section, row: indexPath.row)
+        }
+        return cell
     }
     
-    func didTapAddIngredient() {
-        sections[1].cells.append(CreateReceiptIngredientsCell())
-        table.reloadData()
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sections[section].title
     }
     
-    func didTapAddStep() {
-        sections[2].cells.append(CreateReceiptStepCell())
-        table.reloadData()
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        30
     }
 }
 
-extension CreateReceiptViewController: CreateReceiptViewInput {
+extension CreateReceiptViewController: UITableViewDelegate {
     
 }

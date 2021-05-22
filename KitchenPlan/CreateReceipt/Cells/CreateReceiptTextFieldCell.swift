@@ -2,9 +2,11 @@ import Foundation
 import UIKit
 import PinLayout
 
-final class CreateReceiptStepCell: UITableViewCell {
-    private let plus = UIButton()
-    private let stepName = UITextField()
+final class CreateReceiptTextFieldCell: UITableViewCell {
+    private let button = UIButton()
+    private let textField = UITextField()
+    private var section: Int?
+    private var row: Int?
     weak var output: CreateReceiptViewController?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -23,12 +25,13 @@ final class CreateReceiptStepCell: UITableViewCell {
         contentView.backgroundColor = .white
         contentView.clipsToBounds = true
         backgroundColor = .white
-        stepName.placeholder = "Шаг"
+        textField.overrideUserInterfaceStyle = .light
         
-        plus.addTarget(self, action: #selector(didTapPlusButton), for: .touchDown)
-        plus.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchDown)
+        button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        button.imageView?.tintColor = .green
         
-        [plus, stepName].forEach{
+        [button, textField].forEach{
             contentView.addSubview($0)
         }
     }
@@ -40,25 +43,31 @@ final class CreateReceiptStepCell: UITableViewCell {
     }
     
     func layout() {
-        plus.pin
-            .left()
+        button.pin
+            .left(contentView.pin.safeArea)
             .height(24)
             .sizeToFit(.height)
             .vCenter()
         
-        stepName.pin
-            .after(of: plus)
+        textField.pin
+            .after(of: button)
+            .marginLeft(10)
             .vCenter()
             .height(24)
             .right()
     }
     
-    func configure(output: CreateReceiptViewController) {
-        self.output = output
+    func setMinusImage() {
+        button.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+        button.imageView?.tintColor = .red
     }
     
-    @objc func didTapPlusButton() {
-        self.output?.didTapAddStep()
+    @objc func didTapButton() {
+        guard let section = section, let row = row else {
+            return
+        }
+        
+        self.output?.didTapButton(section: section, row: row)
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -67,5 +76,12 @@ final class CreateReceiptStepCell: UITableViewCell {
         layout()
             
         return CGSize(width: contentView.frame.width, height: contentView.frame.maxY + 10)
+    }
+
+    func configure(output: CreateReceiptViewController, title: String, section: Int, row: Int) {
+        self.output = output
+        self.section = section
+        self.row = row
+        textField.placeholder = title
     }
 }

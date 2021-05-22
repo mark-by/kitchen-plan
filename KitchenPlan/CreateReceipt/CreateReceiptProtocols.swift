@@ -21,7 +21,3 @@ protocol CreateReceiptInteractorOutput: AnyObject {
 
 protocol CreateReceiptRouterInput: AnyObject {
 }
-
-protocol CreateReceiptCellConfiguration: AnyObject {
-    func configure(output: CreateReceiptViewController)
-}

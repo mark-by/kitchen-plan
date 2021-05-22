@@ -10,8 +10,7 @@
 		2B7BD20654455BB6CDB7716D /* Pods_KitchenPlanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DE66759C1EEA9EFFA905EF /* Pods_KitchenPlanTests.framework */; };
 		678CE4B426595F60001C921D /* CreateReceiptUploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678CE4B326595F60001C921D /* CreateReceiptUploadImage.swift */; };
 		678CE4B626595F79001C921D /* CreateReceiptTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678CE4B526595F79001C921D /* CreateReceiptTitle.swift */; };
-		678CE4B826595F9F001C921D /* CreateReceiptIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678CE4B726595F9F001C921D /* CreateReceiptIngredients.swift */; };
-		678CE4BA26595FAA001C921D /* CreateReceiptSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678CE4B926595FAA001C921D /* CreateReceiptSteps.swift */; };
+		678CE4B826595F9F001C921D /* CreateReceiptTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678CE4B726595F9F001C921D /* CreateReceiptTextFieldCell.swift */; };
 		678CE4BC265967BE001C921D /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678CE4BB265967BE001C921D /* UploadImage.swift */; };
 		6D0210752634AE2500C5D2DF /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0210742634AE2500C5D2DF /* ProductsViewController.swift */; };
 		6D0210772634AE3100C5D2DF /* ProductsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0210762634AE3100C5D2DF /* ProductsContainer.swift */; };
@@ -100,8 +99,7 @@
 		41251459D7A9318506FC9372 /* Pods_KitchenPlan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KitchenPlan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		678CE4B326595F60001C921D /* CreateReceiptUploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReceiptUploadImage.swift; sourceTree = "<group>"; };
 		678CE4B526595F79001C921D /* CreateReceiptTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReceiptTitle.swift; sourceTree = "<group>"; };
-		678CE4B726595F9F001C921D /* CreateReceiptIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReceiptIngredients.swift; sourceTree = "<group>"; };
-		678CE4B926595FAA001C921D /* CreateReceiptSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReceiptSteps.swift; sourceTree = "<group>"; };
+		678CE4B726595F9F001C921D /* CreateReceiptTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReceiptTextFieldCell.swift; sourceTree = "<group>"; };
 		678CE4BB265967BE001C921D /* UploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImage.swift; sourceTree = "<group>"; };
 		6D0210742634AE2500C5D2DF /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		6D0210762634AE3100C5D2DF /* ProductsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsContainer.swift; sourceTree = "<group>"; };
@@ -243,8 +241,7 @@
 			children = (
 				678CE4B326595F60001C921D /* CreateReceiptUploadImage.swift */,
 				678CE4B526595F79001C921D /* CreateReceiptTitle.swift */,
-				678CE4B726595F9F001C921D /* CreateReceiptIngredients.swift */,
-				678CE4B926595FAA001C921D /* CreateReceiptSteps.swift */,
+				678CE4B726595F9F001C921D /* CreateReceiptTextFieldCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -738,7 +735,7 @@
 				6DD29B082634FDC6008AFE6A /* utils.swift in Sources */,
 				6D0210812634D51100C5D2DF /* RecipesProtocols.swift in Sources */,
 				6DE0C92E2641425800E84438 /* Receipt.swift in Sources */,
-				678CE4B826595F9F001C921D /* CreateReceiptIngredients.swift in Sources */,
+				678CE4B826595F9F001C921D /* CreateReceiptTextFieldCell.swift in Sources */,
 				678CE4BC265967BE001C921D /* UploadImage.swift in Sources */,
 				6DEC3ACF265944700076965A /* CreateReceiptPresenter.swift in Sources */,
 				6DE0C93E2641434E00E84438 /* Ingredient.swift in Sources */,
@@ -768,7 +765,6 @@
 				6D02107F2634B0CB00C5D2DF /* NavigationBarContainer.swift in Sources */,
 				6DEC3ABB265937990076965A /* MyRecipesContainer.swift in Sources */,
 				6DE0C92526413ED200E84438 /* ReceiptPresenter.swift in Sources */,
-				678CE4BA26595FAA001C921D /* CreateReceiptSteps.swift in Sources */,
 				6D5C27E0264675CE002C5410 /* TypePicker.swift in Sources */,
 				6DEC3AD4265944700076965A /* CreateReceiptContainer.swift in Sources */,
 				6DE0C92626413ED200E84438 /* ReceiptRouter.swift in Sources */,
@@ -973,6 +969,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.softree.KitchenPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -996,6 +993,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.softree.KitchenPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

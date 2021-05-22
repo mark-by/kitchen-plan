@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import PinLayout
 
-final class CreateReceiptImageCell: UITableViewCell, CreateReceiptCellConfiguration {
+final class CreateReceiptImageCell: UITableViewCell {
     private let image = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,10 +42,6 @@ final class CreateReceiptImageCell: UITableViewCell, CreateReceiptCellConfigurat
             .top(pin.safeArea)
         
         image.contentMode = .scaleAspectFill
-    }
-    
-    func configure(output: CreateReceiptViewController) {
-        
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {

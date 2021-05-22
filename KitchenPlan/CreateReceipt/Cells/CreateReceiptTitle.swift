@@ -22,6 +22,7 @@ final class CreateReceiptTitleCell: UITableViewCell {
         contentView.clipsToBounds = true
         backgroundColor = .white
         title.placeholder = "Название"
+        title.overrideUserInterfaceStyle = .light
         
         [title].forEach{
             contentView.addSubview($0)
@@ -37,11 +38,7 @@ final class CreateReceiptTitleCell: UITableViewCell {
     func layout() {
         title.pin.horizontally().margin(10).sizeToFit(.width)
     }
-    
-    func configure(output: CreateReceiptViewController) {
-        
-    }
-    
+
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         contentView.pin.width(size.width)
 
