@@ -67,7 +67,11 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let viewModel = output.item(idx: indexPath.row)
-        cell.configure(with: viewModel)
+        cell.configure(with: viewModel, setImage: {imageView, imageUrl in
+            imageView.kf.setImage(
+                with: URL(string: imageUrl),
+                placeholder: UIImage(named: "receptPlaceholder"))
+        })
         return cell
     }
     
