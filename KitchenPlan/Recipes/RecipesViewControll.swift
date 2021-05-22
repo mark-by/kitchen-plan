@@ -18,9 +18,7 @@ final class RecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let bar = navigationController?.navigationBar {
-            overrideNavigateBar(bar)
-        }
+        overrideNavigateBar(navigationController?.navigationBar)
         let filter = UIBarButtonItem(
             image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(didTapFilterButton))
 
