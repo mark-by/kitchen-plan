@@ -25,7 +25,7 @@ final class CreateReceiptViewController: UIViewController {
         }
 	}
     
-    override func viewDidLayoutSubviews() {
+    override func viewDidLayoutSubviews()c {
         super.viewDidLayoutSubviews()
         
     }
