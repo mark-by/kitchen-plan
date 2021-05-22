@@ -29,7 +29,7 @@ final class CreateReceiptTextFieldCell: UITableViewCell {
         
         button.addTarget(self, action: #selector(didTapButton), for: .touchDown)
         button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
-        button.imageView?.tintColor = .green
+        button.imageView?.tintColor = .systemGreen
         
         [button, textField].forEach{
             contentView.addSubview($0)
@@ -44,7 +44,7 @@ final class CreateReceiptTextFieldCell: UITableViewCell {
     
     func layout() {
         button.pin
-            .left(contentView.pin.safeArea)
+            .left(contentView.pin.safeArea + 10)
             .height(24)
             .sizeToFit(.height)
             .vCenter()

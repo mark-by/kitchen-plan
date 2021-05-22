@@ -37,12 +37,6 @@ final class CreateReceiptViewController: UIViewController {
         
         overrideNavigateBar(navigationController?.navigationBar)
         
-        let tableHeaderHeight = CGFloat(40)
-        let tableWidth = self.table.bounds.size.width
-        let tableFrame = CGRect(x: 0, y: 0, width: tableWidth , height: tableHeaderHeight)
-        self.table.tableHeaderView = UIView(frame: tableFrame)
-        table.contentInset = UIEdgeInsets(top: -tableHeaderHeight, left: 0, bottom: 0, right: 0)
-        
         table.delegate = self
         table.dataSource = self
         
@@ -60,9 +54,15 @@ final class CreateReceiptViewController: UIViewController {
     }
     
     func didTapButton(section: Int, row: Int) {
-        let cell = CreateReceiptTextFieldCell()
-        cell.setMinusImage()
-        sections[section].cells.append(cell)
+        if row == 0 {
+            let cell = CreateReceiptTextFieldCell()
+            cell.setMinusImage()
+            sections[section].cells.append(cell)
+            table.reloadData()
+            return
+        }
+        
+        sections[section].cells.remove(at: row)
         table.reloadData()
     }
 }
@@ -80,22 +80,49 @@ extension CreateReceiptViewController: UITableViewDataSource {
         return sections[section].cells.count
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        }
+        
+        let headerView = UIView()
+        headerView.pin.all()
+        headerView.backgroundColor = .white
+        
+        let label = UILabel()
+        label.text = sections[section].title
+        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.textColor = .black
+        label.pin.left(10).top(10).vCenter().height(20).sizeToFit(.content)
+
+        headerView.addSubview(label)
+
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        return 40
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sections[indexPath.section].cells[indexPath.row]
         if indexPath.section == 0 {
             return cell
         }
-        
-        guard let cell = cell as? CreateReceiptTextFieldCell else {
+
+        guard let textCell = cell as? CreateReceiptTextFieldCell else {
             return .init()
         }
-        
+
         if indexPath.section == 1 {
-            cell.configure(output: self, title: "ингредиент", section: indexPath.section, row: indexPath.row)
+            textCell.configure(output: self, title: "ингредиент", section: indexPath.section, row: indexPath.row)
         } else {
-            cell.configure(output: self, title: "шаг", section: indexPath.section, row: indexPath.row)
+            textCell.configure(output: self, title: "шаг", section: indexPath.section, row: indexPath.row)
         }
-        return cell
+        return textCell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
