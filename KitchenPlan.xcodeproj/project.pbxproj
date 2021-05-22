@@ -295,6 +295,7 @@
 		6D2B8A4A2634A97D00324BF2 /* KitchenPlan */ = {
 			isa = PBXGroup;
 			children = (
+				AF31F3E8265961AD00880E39 /* Preview Content */,
 				6DEC3ABC2659444A0076965A /* CreateReceipt */,
 				6DEC3AAF265937810076965A /* MyRecipes */,
 				6DE0C92F2641431700E84438 /* Ingredient */,
@@ -461,6 +462,14 @@
 				6DEC3ACE265944700076965A /* CreateReceiptContainer.swift */,
 			);
 			path = CreateReceipt;
+			sourceTree = "<group>";
+		};
+		AF31F3E8265961AD00880E39 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Preview Content";
+			path = "Preview Content/KitchenPlan/Preview Content/Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
