@@ -15,6 +15,8 @@ final class ProfileContainer {
 		presenter.view = viewController
 
 		interactor.output = presenter
+                
+        router.sourceViewController = viewController
 
         return ProfileContainer(view: UINavigationController(rootViewController: viewController), input: presenter, router: router)
 	}

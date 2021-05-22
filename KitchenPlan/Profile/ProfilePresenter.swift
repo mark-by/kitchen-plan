@@ -17,6 +17,9 @@ extension ProfilePresenter: ProfileModuleInput {
 }
 
 extension ProfilePresenter: ProfileViewOutput {
+    func didSelectMyRecipes() {
+        router.showMyRecipes()
+    }
 }
 
 extension ProfilePresenter: ProfileInteractorOutput {
