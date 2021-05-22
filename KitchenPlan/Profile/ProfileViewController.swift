@@ -73,13 +73,4 @@ extension ProfileViewController: UITableViewDataSource {
         
         return cell
     }
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-        view.backgroundColor = .white
-        overrideNavigateBar(navigationController?.navigationBar)
-	}
-}
-
-extension ProfileViewController: ProfileViewInput {
 }
