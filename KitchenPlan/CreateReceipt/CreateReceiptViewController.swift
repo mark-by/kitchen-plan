@@ -39,7 +39,7 @@ final class CreateReceiptViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapSave))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapSave))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapClose))
         
         table.delegate = self
         table.dataSource = self
@@ -58,11 +58,14 @@ final class CreateReceiptViewController: UIViewController {
     }
     
     @objc func didTapSave() {
-        
+        for _ in sections {
+            // safe custom receipt
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func didTapClose() {
-        
+        dismiss(animated: true, completion: nil)
     }
     
     func didTapButton(section: Int, row: Int) {
