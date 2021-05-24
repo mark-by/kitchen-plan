@@ -5,7 +5,8 @@ import Kingfisher
 final class IngredientsViewCell: UICollectionViewCell {
     private let container = UIView()
     private let titleLabel = UILabel()
-    private let image = UIImageView()
+    private let imageView = UIImageView()
+    static let indetifier = "IngredientsCollectionViewCell"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,42 +19,42 @@ final class IngredientsViewCell: UICollectionViewCell {
     }
 
     private func setup() {
-        backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = UIColor.white
 
-        contentView.clipsToBounds = true
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowRadius = 9
         contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
         contentView.layer.shadowOpacity = 0.1
         contentView.layer.cornerRadius = 8
-        contentView.backgroundColor = UIColor.white
 
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        
-        titleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
-        titleLabel.textColor = .darkGray
+        imageView.clipsToBounds = true
+        titleLabel.font = .systemFont(ofSize: 10, weight: .regular)
+        titleLabel.textColor = .black
 
-        [image, titleLabel].forEach {
+        [imageView, titleLabel].forEach {
             container.addSubview($0)
         }
-        
+
         container.layer.cornerRadius = 5
         container.clipsToBounds = true
-        
+
         contentView.addSubview(container)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        contentView.pin
+            .horizontally(10)
+            .vertically(10)
+
         container.pin
             .width(20%)
             .height(20%)
-        
+
         container.pin.all()
-        
-        image.pin
+
+        imageView.pin
             .width(100%)
             .height(70%)
 
@@ -65,10 +66,14 @@ final class IngredientsViewCell: UICollectionViewCell {
             .sizeToFit(.height)
     }
 
-    func configure(with model: IngredientsViewModel) {
+    func configure(with model: IngredientViewModel) {
         titleLabel.text = model.title
-        image.kf.setImage(
-            with: URL(string: model.image),
-            placeholder: UIImage(named: "ingredientPlaceholder"))
+        if let url = model.image {
+            imageView.kf.setImage(
+                with: URL(string: url),
+                placeholder: UIImage(named: "ingredientPlaceholder"))
+        } else {
+            imageView.image = UIImage(named: "ingredientPlaceholder")
+        }
     }
 }

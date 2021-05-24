@@ -1,51 +1,42 @@
 import Foundation
-
-protocol IngredientsManagerDescription: AnyObject {
-    func loadIngredients(title: String?, completion: @escaping (Result<[IngredientsInfoResponse], Error>) -> Void)
-}
+import RealmSwift
 
 final class IngredientsManager {
     static let shared: IngredientsManagerDescription = IngredientsManager()
+    private let realm = try! Realm()
 }
 
 extension IngredientsManager: IngredientsManagerDescription {
-    func loadIngredients(title: String? = nil, completion: @escaping (Result<[IngredientsInfoResponse], Error>) -> Void) {
-        guard let url = URL(string: backHost + genPath(
-                                title: title)) else {
-            completion(.failure(NetworkError.unexpected))
-            return
+    func save(in model: IngredientViewModel) {
+        let ingredient = Ingredient()
+        ingredient.id = model.id
+        ingredient.title = model.title
+        if let image = model.image {
+            ingredient.image = image
         }
-        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            guard let data = data else {
-                completion(.failure(NetworkError.unexpected))
-                return
-            }
-
-            let json = JSONDecoder()
-
-            do {
-                let result = try json.decode([IngredientsInfoResponse].self, from: data)
-                completion(.success(result))
-            } catch let error {
-                completion(.failure(error))
-            }
+        if let measure = model.measure {
+            ingredient.measure = measure
+        }
+        if let quantity = model.quantity {
+            ingredient.quantity = quantity
         }
 
-        task.resume()
+        realm.beginWrite()
+        realm.add(ingredient)
+        try! realm.commitWrite()
     }
-}
 
-func genPath(title: String?) -> String {
-    var path = "/ingredients"
-    if let unwrappedTitle = title {
-        if unwrappedTitle != "" {
-            path += "?title=\(unwrappedTitle)"
+    func getIngredients() -> [IngredientViewModel] {
+        var result: [IngredientViewModel] = []
+        for el in realm.objects(Ingredient.self) {
+            result.append(IngredientViewModel(id: el.id, title: el.title, image: el.image, measure: el.measure, quantity: el.quantity))
         }
+        return result
     }
-    return path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? path
+
+    func delete(for id: Int) {
+        realm.beginWrite()
+        realm.delete(realm.objects(Ingredient.self).filter("id == %@", id))
+        try! realm.commitWrite()
+    }
 }

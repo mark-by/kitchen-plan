@@ -7,23 +7,15 @@ final class IngredientsInteractor {
 }
 
 extension IngredientsInteractor: IngredientsInteractorInput {
-        func loadIngredients(title: String?) {
-        if isFetching {
-            return
-        }
-
-        isFetching = true
-            ingredientsManager.loadIngredients(title: title) { [weak self] (result) in DispatchQueue.main.async {
-            switch result {
-            case .success(let ingredients):
-                self?.output?.didLoad(ingredients: ingredients)
-                self?.isFetching = false
-            case .failure(let error):
-                print(error)
-                self?.output?.didReceive()
-                self?.isFetching = false
-            }
-        }
+    func delete(for id: Int) {
+        ingredientsManager.delete(for: id)
     }
-}
+
+    func load() {
+        output?.didLoad(with: ingredientsManager.getIngredients())
+    }
+
+    func save(in model: IngredientViewModel) {
+        ingredientsManager.save(in: model)
+    }
 }

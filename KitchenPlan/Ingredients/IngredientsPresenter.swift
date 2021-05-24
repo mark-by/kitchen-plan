@@ -2,61 +2,68 @@ import UIKit
 
 final class IngredientsPresenter {
     weak var view: IngredientsViewInput?
+    weak var moduleOutput: IngredientsModuleOutput?
+
     let interactor: IngredientsInteractorInput
-    private var ingredients: [IngredientsViewModel] = []
+    let router: IngredientsRouter
 
-    private var searchText: String?
+    private var ingredients = [IngredientViewModel]()
 
-    init(interactor: IngredientsInteractorInput) {
+    init(router: IngredientsRouter, interactor: IngredientsInteractorInput) {
+        self.router = router
         self.interactor = interactor
-    }
-
-    func toViewModel(model: IngredientsInfoResponse) -> IngredientsViewModel {
-        return IngredientsViewModel(id: model.id, title: model.title, image: model.image)
     }
 }
 
-extension IngredientsPresenter: IngredientsViewOutput {
-    func didLoadView() {
-        interactor.loadIngredients(title: nil)
+extension IngredientsPresenter: IngredientsViewOutput, IngredientsInteractorOutput, IngredientSearchModuleOutput, IngredientsModuleInput {
+    func didDelete(for idx: Int) {
+        interactor.delete(for: idx)
+
+        interactor.load()
+        view?.reloadData()
     }
 
-    func didSearch(text: String) {
-        if let unwrap = self.searchText {
-            if text == "" {
-                self.searchText = nil
-            }
-            if text == unwrap {
-                return
-            }
-        } else if text == "" {
+    func didTapAdd() {
+        router.showIngredientSearch()
+    }
+
+    func didSelectIngredient(with model: IngredientViewModel) {
+        let found = self.ingredients.firstIndex { ingredient in
+            return ingredient.id == model.id
+        }
+        if let _ = found {
+            view?.close()
             return
         }
-        self.searchText = text
-        self.ingredients = []
-        interactor.loadIngredients(title: text)
+
+        self.ingredients.append(model)
+        interactor.save(in: model)
+        view?.reloadData()
+        view?.close()
+    }
+    
+    func didLoadView() {
+        interactor.load()
     }
 
     func count() -> Int {
         return ingredients.count
     }
 
-    func item(idx: Int) -> IngredientsViewModel {
+    func item(idx: Int) -> IngredientViewModel {
         return ingredients[idx]
     }
 
     func didSelectItem(at index: Int) {
-        print(index)
+        router.showIngredient(with: ingredients[index])
     }
-}
 
-extension IngredientsPresenter: IngredientsInteractorOutput {
     func didReceive() {
         view?.reloadData()
     }
 
-    func didLoad(ingredients: [IngredientsInfoResponse]) {
-        self.ingredients.append(contentsOf: ingredients.map { toViewModel(model: $0)})
+    func didLoad(with ingredients: [IngredientViewModel]) {
+        self.ingredients = ingredients
         self.view?.reloadData()
     }
 }
