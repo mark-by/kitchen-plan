@@ -58,9 +58,13 @@ final class CreateReceiptViewController: UIViewController {
     }
     
     @objc func didTapSave() {
-        for _ in sections {
-            // safe custom receipt
-        }
+        let receiptName = sections[0].title
+        
+        let ingredients = getIngredients()
+        
+        print(receiptName)
+        print("\nINGREDIENTS: \(ingredients)")
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -79,6 +83,29 @@ final class CreateReceiptViewController: UIViewController {
         
         sections[section].cells.remove(at: row)
         table.reloadData()
+    }
+    
+    func getIngredients() -> [Ingredient] {
+        print("ENTER")
+        var ingredients = [Ingredient]()
+        for ingredientName in sections[1].cells {
+            
+            // fuck this shit!!!!!!
+            print("INGREDIENT CELL: \(String(describing: ingredientName.textLabel?.text))")
+            
+            guard let title = ingredientName.textLabel?.text else {
+                return ingredients
+            }
+            let ingredient = Ingredient(id: 0, title: title, image: "", measure: "", quantity: 0.00)
+            
+            print("INGREDIENT FROM FUNC: \(ingredient)")
+            
+            ingredients.append(ingredient)
+        }
+        
+        print("\nINGREDIENTS FROM FUNC: \(ingredients)")
+        
+        return ingredients
     }
 }
 
