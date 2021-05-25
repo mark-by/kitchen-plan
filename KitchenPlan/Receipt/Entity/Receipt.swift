@@ -7,7 +7,7 @@ struct Receipt: Decodable {
     let time: Int?
     let type: String
     let steps: [String]
-    let ingredients: [Ingredient]
+    let ingredients: [IngredientViewModel]
     
     enum CodingKeys: String, CodingKey {
         case id

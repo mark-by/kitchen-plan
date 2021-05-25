@@ -22,7 +22,7 @@ final class ReceiptPresenter {
             ingredients: ingredientsToStr(model.ingredients))
     }
     
-    func ingredientsToStr(_ ingredients: [Ingredient]) -> [String] {
+    func ingredientsToStr(_ ingredients: [IngredientViewModel]) -> [String] {
         return ingredients.map { (item) in
             var text = "\(item.title)"
             if let quantity = item.quantity, let measure = item.measure {
