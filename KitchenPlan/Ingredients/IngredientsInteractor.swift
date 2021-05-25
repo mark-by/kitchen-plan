@@ -8,7 +8,10 @@ final class IngredientsInteractor {
 
 extension IngredientsInteractor: IngredientsInteractorInput {
     func delete(for id: Int) {
-        ingredientsManager.delete(for: id)
+        DispatchQueue.main.async { [weak self] in
+            self?.ingredientsManager.delete(for: id)
+            self?.load()
+        }
     }
 
     func load() {
@@ -16,6 +19,9 @@ extension IngredientsInteractor: IngredientsInteractorInput {
     }
 
     func save(in model: IngredientViewModel) {
-        ingredientsManager.save(in: model)
+        DispatchQueue.main.async { [weak self] in
+            self?.ingredientsManager.save(in: model)
+            self?.load()
+        }
     }
 }

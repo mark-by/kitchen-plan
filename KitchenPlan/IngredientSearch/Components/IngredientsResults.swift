@@ -27,7 +27,6 @@ final class IngredientsSearchResult: UIViewController {
 
 extension IngredientsSearchResult: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row, "here")
         output?.didSelect(at: indexPath.row)
     }
 

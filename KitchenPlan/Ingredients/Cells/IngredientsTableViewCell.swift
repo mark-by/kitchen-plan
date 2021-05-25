@@ -55,7 +55,7 @@ final class IngredientsViewCell: UICollectionViewCell {
         container.pin.all()
 
         imageView.pin
-            .width(100%)
+            .horizontally()
             .height(70%)
 
         titleLabel.pin
