@@ -48,6 +48,10 @@ final class RecipesViewController: UIViewController {
         tableView.pin.all()
     }
     
+    func didSelectFromMenu() {
+        output.didSelectFromMenu()
+    }
+    
     @objc func didTapFilterButton() {
         let typePicker = TypePicker()
         typePicker.output = output

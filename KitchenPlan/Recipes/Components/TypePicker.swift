@@ -29,11 +29,12 @@ final class TypePicker: UIViewController {
     }
     
     func selectDefault() {
-        let userDefaults = UserDefaults()
-        guard let title = userDefaults.string(forKey: "receipt_type") else {
-            return
+        let userDefaults = UserDefaults.standard
+        if let title = userDefaults.string(forKey: "receipt_type") {
+            picker.selectRow(data.firstIndex(of: title) ?? 0, inComponent: 0, animated: true)
+        } else {
+            picker.selectRow(0, inComponent: 0, animated: true)
         }
-        picker.selectRow(data.firstIndex(of: title) ?? 0, inComponent: 0, animated: true)
         guard let canFilterByIngredients = output?.canFilterByIngredients() else {
             return
         }
@@ -89,11 +90,11 @@ extension TypePicker: UIPickerViewDelegate {
         switch component {
         case 0:
             var selectedType: String?
-            let userDefaults = UserDefaults()
+            let userDefaults = UserDefaults.standard
             if data[row] == "Все" {
                 selectedType = nil
                 mainViewController?.title = "Рецепты"
-                userDefaults.setValue("Рецепты", forKey: "receipt_type")
+                userDefaults.setValue(nil, forKey: "receipt_type")
             } else {
                 selectedType = String(data[row].dropLast())
                 mainViewController?.title = data[row]

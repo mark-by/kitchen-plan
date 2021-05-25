@@ -19,6 +19,7 @@ final class NavigationBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegate = self
         tabBar.isTranslucent = false
         tabBar.barTintColor = .white
         tabBar.tintColor = .black
@@ -28,7 +29,6 @@ final class NavigationBarViewController: UITabBarController {
         tabBar.layer.shadowOffset = CGSize(width: 0, height: -3)
         tabBar.backgroundColor = .white
         setViewControllers([recipesController, productsController, profileController], animated: true)
-        
         guard let items = tabBar.items else {
             return
         }
@@ -38,5 +38,27 @@ final class NavigationBarViewController: UITabBarController {
         for idx in 0..<items.count {
             items[idx].image = UIImage(named: images[idx])
         }
+    }
+}
+
+extension NavigationBarViewController: UITabBarControllerDelegate {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let title = item.title else {
+            return
+        }
+        
+        guard let _ = ["Рецепты", "Завтраки", "Ужины","Обеды","Десерты"].firstIndex(of: title) else {
+            return
+        }
+        
+        guard let recipesController = viewControllers?[0] as? UINavigationController else {
+            return
+        }
+        
+        guard let recipesView = recipesController.viewControllers[0] as? RecipesViewController else {
+            return
+        }
+        
+        recipesView.didSelectFromMenu()
     }
 }

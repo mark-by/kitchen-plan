@@ -6,6 +6,7 @@ protocol RecipesViewOutput: AnyObject {
     func didSearch(text: String)
     func didSelectType(type: String?)
     func didToggleIngredients(isActive: Bool)
+    func didSelectFromMenu()
     
     func selected() -> (String?, Bool)
     func canFilterByIngredients() -> Bool
