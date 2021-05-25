@@ -28,6 +28,7 @@ final class IngredientsViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 8
 
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         titleLabel.font = .systemFont(ofSize: 10, weight: .regular)
         titleLabel.textColor = .black
 
