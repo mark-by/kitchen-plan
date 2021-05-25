@@ -5,15 +5,14 @@ final class IngredientContainer {
 	let viewController: UIViewController
 	private(set) weak var router: IngredientRouterInput!
 
-	class func assemble(with context: IngredientContext) -> IngredientContainer {
+	class func assemble(with model: IngredientViewModel) -> IngredientContainer {
         let router = IngredientRouter()
         let interactor = IngredientInteractor()
         let presenter = IngredientPresenter(router: router, interactor: interactor)
 		let viewController = IngredientViewController(output: presenter)
 
 		presenter.view = viewController
-		presenter.moduleOutput = context.moduleOutput
-
+        // TODO (a.muradyan) pass model to presenter
 		interactor.output = presenter
 
         return IngredientContainer(view: viewController, input: presenter, router: router)
