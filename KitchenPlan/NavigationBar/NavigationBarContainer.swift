@@ -9,11 +9,11 @@ final class NavigationBarContainer {
     
     class func assemble() -> NavigationBarContainer {
         let recipesContainer = RecipesContainer.assemble()
-        let productsContainer = ProductsContainer.assemble()
+        let ingredeitnsContainer = IngredientsContainer.assemble()
         let profileContainer = ProfileContainer.assemble()
         
         let bar = NavigationBarViewController(recipes: recipesContainer.viewController,
-                                              products: productsContainer.viewController,
+                                              products: ingredeitnsContainer.viewController,
                                               profile: profileContainer.viewController)
         
         return NavigationBarContainer(viewController: bar)

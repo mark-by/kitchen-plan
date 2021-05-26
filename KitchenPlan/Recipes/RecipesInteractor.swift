@@ -4,6 +4,7 @@ final class RecipesInteractor {
     weak var output: RecipesInteractorOutput?
     var isFetching = false
     private let recipesManager: RecipesManagerDescription = RecipesManager.shared
+    private let ingredientsManager: IngredientsManagerDescription = IngredientsManager.shared
 }
 
 extension RecipesInteractor: RecipesInteractorInput {
@@ -30,7 +31,8 @@ extension RecipesInteractor: RecipesInteractorInput {
     }
     
     func havingIngredients() -> [Int] {
-//        return [1,2,3,4,5,6,7,8,9,10]
-        return []
+        return ingredientsManager.getIngredients().map { item in
+            item.id
+        }
     }
 }

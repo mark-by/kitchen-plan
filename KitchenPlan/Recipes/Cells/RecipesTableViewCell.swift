@@ -78,11 +78,9 @@ final class RecipesTableViewCell: UITableViewCell {
             .sizeToFit(.content)
     }
     
-    func configure(with model: RecipesViewModel) {
+    func configure(with model: RecipesViewModel, setImage: (UIImageView, String) -> ()) {
         titleLabel.text = model.title
         timeLabel.text = model.timeToCook
-        image.kf.setImage(
-            with: URL(string: model.image),
-            placeholder: UIImage(named: "receptPlaceholder"))
+        setImage(image, model.image)
     }
 }

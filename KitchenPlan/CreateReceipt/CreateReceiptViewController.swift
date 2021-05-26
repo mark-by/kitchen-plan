@@ -96,7 +96,8 @@ final class CreateReceiptViewController: UIViewController {
             guard let title = ingredientName.textLabel?.text else {
                 return ingredients
             }
-            let ingredient = Ingredient(id: 0, title: title, image: "", measure: "", quantity: 0.00)
+            print("title")
+            let ingredient = Ingredient()
             
             print("INGREDIENT FROM FUNC: \(ingredient)")
             

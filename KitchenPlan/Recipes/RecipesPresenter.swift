@@ -9,10 +9,14 @@ final class RecipesPresenter {
     private var searchText: String?
     private var searchType: String?
     private (set) var searchByIngredients: Bool = false
+    private var ingredients = [Int]()
     
     init(interactor: RecipesInteractorInput, router: RecipesRouterInput) {
         self.interactor = interactor
         self.router = router
+        
+        self.ingredients = interactor.havingIngredients()
+        searchByIngredients = UserDefaults.standard.bool(forKey: "search_by_ingredients")
     }
     
     func toViewModel(model: ReceiptInfoResponse) -> RecipesViewModel {
@@ -28,7 +32,7 @@ final class RecipesPresenter {
     
     func serveIngredientsFilter() -> [Int] {
         if searchByIngredients {
-            return interactor.havingIngredients()
+            return self.ingredients
         }
         return []
     }
@@ -49,11 +53,11 @@ extension RecipesPresenter: RecipesViewOutput {
         setDefautlType()
         interactor.loadRecipes(since: 0, limit: 5,
                                title: nil, type: searchType,
-                               ingredients: [])
+                               ingredients: serveIngredientsFilter())
     }
     
     func setDefautlType() {
-        let userDefaults = UserDefaults()
+        let userDefaults = UserDefaults.standard
         if let type = userDefaults.string(forKey: "receipt_type") {
             searchType = String(type.dropLast())
         } else {
@@ -90,6 +94,22 @@ extension RecipesPresenter: RecipesViewOutput {
     
     func didToggleIngredients(isActive: Bool) {
         searchByIngredients = isActive
+        UserDefaults.standard.setValue(isActive, forKey: "search_by_ingredients")
+        self.recipes = []
+        interactor.loadRecipes(since: 0, limit: 5, title: searchText,
+                               type: searchType, ingredients: serveIngredientsFilter())
+    }
+    
+    func didSelectFromMenu() {
+        let havingIngredients = interactor.havingIngredients()
+        if !searchByIngredients {
+            self.ingredients = havingIngredients
+            return
+        }
+        if self.ingredients == havingIngredients {
+            return
+        }
+        self.ingredients = havingIngredients
         self.recipes = []
         interactor.loadRecipes(since: 0, limit: 5, title: searchText,
                                type: searchType, ingredients: serveIngredientsFilter())
@@ -100,7 +120,8 @@ extension RecipesPresenter: RecipesViewOutput {
     }
     
     func selected() -> (String?, Bool) {
-        return (searchType, searchByIngredients)
+        
+        return (searchType, searchByIngredients && canFilterByIngredients())
     }
     
     func count() -> Int {
