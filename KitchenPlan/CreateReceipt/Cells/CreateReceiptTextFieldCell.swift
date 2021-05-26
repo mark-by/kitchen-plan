@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import PinLayout
 
-final class CreateReceiptTextFieldCell: UITableViewCell {
+final class CreateReceiptTextFieldCell: InputCell {
     private let button = UIButton()
     private let textField = UITextField()
     private var section: Int?
@@ -68,6 +68,10 @@ final class CreateReceiptTextFieldCell: UITableViewCell {
         }
         
         self.output?.didTapButton(section: section, row: row)
+    }
+    
+    override func getData() -> String? {
+        return textField.text
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {

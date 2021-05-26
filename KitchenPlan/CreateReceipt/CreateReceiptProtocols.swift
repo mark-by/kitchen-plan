@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol CreateReceiptModuleInput {
 	var moduleOutput: CreateReceiptModuleOutput? { get }
@@ -20,4 +21,8 @@ protocol CreateReceiptInteractorOutput: AnyObject {
 }
 
 protocol CreateReceiptRouterInput: AnyObject {
+}
+
+protocol DataGetter: AnyObject {
+    func getData() -> String?
 }

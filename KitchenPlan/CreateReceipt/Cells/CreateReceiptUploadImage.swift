@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import PinLayout
 
-final class CreateReceiptImageCell: UITableViewCell {
+final class CreateReceiptImageCell: InputCell {
     private let image = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

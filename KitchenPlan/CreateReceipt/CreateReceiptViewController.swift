@@ -3,7 +3,7 @@ import PinLayout
 
 struct Section {
     var title: String
-    var cells: [UITableViewCell]
+    var cells: [InputCell]
 }
 
 final class CreateReceiptViewController: UIViewController {
@@ -58,14 +58,43 @@ final class CreateReceiptViewController: UIViewController {
     }
     
     @objc func didTapSave() {
-        let receiptName = sections[0].title
+        let _ = sections[0].cells[0] //image cell
         
-        let ingredients = getIngredients()
+        guard let receiptTitle = getTitle() else {
+            showError(error: "Имя рецепта обязательно")
+            return
+        }
         
-        print(receiptName)
-        print("\nINGREDIENTS: \(ingredients)")
+        let ingredients = getInfoList(from: sections[1].cells)
+        guard ingredients.count > 0 else {
+            showError(error: "Необходим хотя бы один ингредиент")
+            return
+        }
         
+        let steps = getInfoList(from: sections[2].cells)
+        guard steps.count > 0 else {
+            showError(error: "Необходим хотя бы один шаг")
+            return
+        }
+        
+        let outputReceipt = ReceiptOutput(image: nil, title: receiptTitle, type: "ЗАВТРАК", ingredients: ingredients, steps: steps)
+        print(outputReceipt)
         dismiss(animated: true, completion: nil)
+    }
+    
+    func showError(error: String) {
+        let alert = UIAlertController(title: "Недостаточно информации", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func getTitle() -> String? {
+        guard let title = sections[0].cells[1].getData(), title != "" else {
+            return nil
+        }
+        
+        return title
     }
     
     @objc func didTapClose() {
@@ -85,28 +114,15 @@ final class CreateReceiptViewController: UIViewController {
         table.reloadData()
     }
     
-    func getIngredients() -> [Ingredient] {
-        print("ENTER")
-        var ingredients = [Ingredient]()
-        for ingredientName in sections[1].cells {
-            
-            // fuck this shit!!!!!!
-            print("INGREDIENT CELL: \(String(describing: ingredientName.textLabel?.text))")
-            
-            guard let title = ingredientName.textLabel?.text else {
-                return ingredients
+    func getInfoList(from cells: [InputCell]) -> [String] {
+        var infos = [String]()
+        cells.forEach { item in
+            guard let info = item.getData(), info != "" else {
+                return
             }
-            print("title")
-            let ingredient = Ingredient()
-            
-            print("INGREDIENT FROM FUNC: \(ingredient)")
-            
-            ingredients.append(ingredient)
+            infos.append(info)
         }
-        
-        print("\nINGREDIENTS FROM FUNC: \(ingredients)")
-        
-        return ingredients
+        return infos
     }
 }
 

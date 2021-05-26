@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import PinLayout
 
-final class CreateReceiptTitleCell: UITableViewCell {
+final class CreateReceiptTitleCell: InputCell {
     private let title = UITextField()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -37,6 +37,10 @@ final class CreateReceiptTitleCell: UITableViewCell {
     
     func layout() {
         title.pin.horizontally().margin(10).sizeToFit(.width)
+    }
+    
+    override func getData() -> String? {
+        return title.text
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
