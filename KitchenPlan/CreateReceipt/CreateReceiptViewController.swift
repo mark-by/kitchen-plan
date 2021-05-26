@@ -9,7 +9,7 @@ struct Section {
 final class CreateReceiptViewController: UIViewController {
 	private let output: CreateReceiptViewOutput
     private var sections = [
-        Section(title: "", cells: [CreateReceiptImageCell(), CreateReceiptTitleCell()]),
+        Section(title: "", cells: [CreateReceiptImageCell(), CreateReceiptTitleCell(), CreateReceiptTypeCell()]),
         Section(title: "Ингредиенты", cells: [CreateReceiptTextFieldCell()]),
         Section(title: "Шаги", cells: [CreateReceiptTextFieldCell()])
     ]
@@ -60,8 +60,13 @@ final class CreateReceiptViewController: UIViewController {
     @objc func didTapSave() {
         let _ = sections[0].cells[0] //image cell
         
-        guard let receiptTitle = getTitle() else {
+        guard let receiptTitle = sections[0].cells[1].getData(), receiptTitle != "" else {
             showError(error: "Имя рецепта обязательно")
+            return
+        }
+        
+        guard let type = sections[0].cells[2].getData(), type != "" else {
+            showError(error: "Выберите тип")
             return
         }
         
@@ -77,7 +82,7 @@ final class CreateReceiptViewController: UIViewController {
             return
         }
         
-        let outputReceipt = ReceiptOutput(image: nil, title: receiptTitle, type: "ЗАВТРАК", ingredients: ingredients, steps: steps)
+        let outputReceipt = ReceiptOutput(image: nil, title: receiptTitle, type: type, ingredients: ingredients, steps: steps)
         print(outputReceipt)
         dismiss(animated: true, completion: nil)
     }
@@ -87,14 +92,6 @@ final class CreateReceiptViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
         present(alert, animated: true, completion: nil)
-    }
-    
-    func getTitle() -> String? {
-        guard let title = sections[0].cells[1].getData(), title != "" else {
-            return nil
-        }
-        
-        return title
     }
     
     @objc func didTapClose() {
