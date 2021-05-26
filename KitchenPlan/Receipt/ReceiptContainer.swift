@@ -5,7 +5,7 @@ final class ReceiptContainer {
 	let viewController: UIViewController
 	private(set) weak var router: ReceiptRouterInput!
 
-    class func assemble(with model: RecipesViewModel) -> ReceiptContainer {
+    class func assemble(with model: RecipesViewModel, fromLocal: Bool = false) -> ReceiptContainer {
         let router = ReceiptRouter()
         let interactor = ReceiptInteractor()
         let presenter = ReceiptPresenter(router: router, interactor: interactor)
@@ -14,6 +14,7 @@ final class ReceiptContainer {
 		presenter.view = viewController
         presenter.receiptId = model.id
 		interactor.output = presenter
+        interactor.fromDB = fromLocal
 
         return ReceiptContainer(view: viewController, input: presenter, router: router)
 	}

@@ -7,7 +7,9 @@ final class MyRecipesRouter {
 
 extension MyRecipesRouter: MyRecipesRouterInput {
     func showReceipt(with model: RecipesViewModel) {
-        print(#function)
+        let container = ReceiptContainer.assemble(with: model, fromLocal: true)
+        
+        sourceViewController?.present(container.viewController, animated: true, completion: nil)
     }
     
     func showCreateReceipt() {
