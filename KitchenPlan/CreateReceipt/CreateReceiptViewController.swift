@@ -82,8 +82,8 @@ final class CreateReceiptViewController: UIViewController {
             return
         }
         
-        let outputReceipt = ReceiptOutput(image: nil, title: receiptTitle, type: type, ingredients: ingredients, steps: steps)
-        print(outputReceipt)
+        let outputReceipt = CreatedReceipt(image: nil, title: receiptTitle, type: type, ingredients: ingredients, steps: steps)
+        output.didSaveReceipt(with: outputReceipt)
         dismiss(animated: true, completion: nil)
     }
     

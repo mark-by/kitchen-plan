@@ -6,12 +6,14 @@ protocol CreateReceiptModuleInput {
 }
 
 protocol CreateReceiptModuleOutput: AnyObject {
+    func didSaveReceipt(with model: CreatedReceipt)
 }
 
 protocol CreateReceiptViewInput: AnyObject {
 }
 
 protocol CreateReceiptViewOutput: AnyObject {
+    func didSaveReceipt(with model: CreatedReceipt)
 }
 
 protocol CreateReceiptInteractorInput: AnyObject {

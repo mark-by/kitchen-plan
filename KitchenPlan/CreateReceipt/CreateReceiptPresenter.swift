@@ -19,6 +19,10 @@ extension CreateReceiptPresenter: CreateReceiptModuleInput {
 }
 
 extension CreateReceiptPresenter: CreateReceiptViewOutput {
+    func didSaveReceipt(with model: CreatedReceipt) {
+        print("Created receipt: \(model)")
+        moduleOutput?.didSaveReceipt(with: model)
+    }
 }
 
 extension CreateReceiptPresenter: CreateReceiptInteractorOutput {

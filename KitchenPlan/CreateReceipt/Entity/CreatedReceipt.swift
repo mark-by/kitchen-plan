@@ -1,6 +1,6 @@
 import Foundation
 
-struct ReceiptOutput {
+struct CreatedReceipt {
     let image: String?
     let title: String
     let type: String
