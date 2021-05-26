@@ -5,6 +5,10 @@ final class MyRecipesRouter {
 }
 
 extension MyRecipesRouter: MyRecipesRouterInput {
+    func showReceipt(with model: RecipesViewModel) {
+        print(#function)
+    }
+    
     func showCreateReceipt() {
         let container = CreateReceiptContainer.assemble(with: nil)
         

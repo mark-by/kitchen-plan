@@ -20,6 +20,7 @@
 		6D28626B265E7AF000E896FB /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28626A265E7AF000E896FB /* InputCell.swift */; };
 		6D28626D265E7C7400E896FB /* CreatedReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28626C265E7C7400E896FB /* CreatedReceipt.swift */; };
 		6D28626F265E854F00E896FB /* CreateReceiptTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28626E265E854F00E896FB /* CreateReceiptTypeCell.swift */; };
+		6D286272265EA64A00E896FB /* MyReciept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D286271265EA64A00E896FB /* MyReciept.swift */; };
 		6D2B8A4C2634A97D00324BF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8A4B2634A97D00324BF2 /* AppDelegate.swift */; };
 		6D2B8A4E2634A97D00324BF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8A4D2634A97D00324BF2 /* SceneDelegate.swift */; };
 		6D2B8A522634A97E00324BF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D2B8A512634A97E00324BF2 /* Assets.xcassets */; };
@@ -125,6 +126,7 @@
 		6D28626A265E7AF000E896FB /* InputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
 		6D28626C265E7C7400E896FB /* CreatedReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedReceipt.swift; sourceTree = "<group>"; };
 		6D28626E265E854F00E896FB /* CreateReceiptTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReceiptTypeCell.swift; sourceTree = "<group>"; };
+		6D286271265EA64A00E896FB /* MyReciept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReciept.swift; sourceTree = "<group>"; };
 		6D2B8A482634A97D00324BF2 /* KitchenPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2B8A4B2634A97D00324BF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D2B8A4D2634A97D00324BF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -322,6 +324,14 @@
 			path = NavigationBar;
 			sourceTree = "<group>";
 		};
+		6D286270265EA63900E896FB /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				6D286271265EA64A00E896FB /* MyReciept.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		6D2B8A3F2634A97D00324BF2 = {
 			isa = PBXGroup;
 			children = (
@@ -493,6 +503,7 @@
 		6DEC3AAF265937810076965A /* MyRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				6D286270265EA63900E896FB /* Entity */,
 				6DEC3AB0265937990076965A /* MyRecipesPresenter.swift */,
 				6DEC3AB1265937990076965A /* MyRecipesRouter.swift */,
 				6DEC3AB2265937990076965A /* MyRecipesViewController.swift */,
@@ -868,6 +879,7 @@
 				6DE0C92826413ED200E84438 /* ReceiptProtocols.swift in Sources */,
 				6D28626F265E854F00E896FB /* CreateReceiptTypeCell.swift in Sources */,
 				6DE0C93B2641433500E84438 /* IngredientContainer.swift in Sources */,
+				6D286272265EA64A00E896FB /* MyReciept.swift in Sources */,
 				AF03DF8D265BF1D80003F2F8 /* IngredientsRouter.swift in Sources */,
 				6DD29B0B26356F54008AFE6A /* Recipes.swift in Sources */,
 				6DEC3AAE26592CC50076965A /* Entity.swift in Sources */,
