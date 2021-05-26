@@ -20,11 +20,13 @@ protocol MyRecipesViewOutput: AnyObject {
 }
 
 protocol MyRecipesInteractorInput: AnyObject {
-    func loadMyRecipes()
+    func loadMyRecipes() -> [RecipesViewModel]
+    func addRecipe(with model: CreatedReceipt) -> RecipesViewModel
+    func deleteRecipe(id: Int)
 }
 
 protocol MyRecipesInteractorOutput: AnyObject {
-    func didLoad(recipes: [ReceiptInfoResponse])
+    func didLoad(recipes: [RecipesViewModel])
     func didReceive()
 }
 
@@ -35,4 +37,10 @@ protocol MyRecipesRouterInput: AnyObject {
 
 protocol MyRecipesRouterOutput: AnyObject {
     func showReceipt(with model: RecipesViewModel)
+}
+
+protocol MyRecipesManagerDescription: AnyObject {
+    func loadMyRecipes() -> [RecipesViewModel]
+    func addToMyRecipes(with model: CreatedReceipt) -> RecipesViewModel
+    func deleteMyRecipe(id: Int)
 }

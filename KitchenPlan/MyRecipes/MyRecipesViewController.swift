@@ -58,8 +58,8 @@ extension MyRecipesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let viewModel = output.item(idx: indexPath.row)
-        cell.configure(with: viewModel) { view, url in
-            
+        cell.configure(with: viewModel) { view, path in
+            view.image = UIImage(named: "receptPlaceholder")
         }
         return cell
     }

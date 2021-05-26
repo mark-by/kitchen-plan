@@ -13,15 +13,8 @@ final class MyRecipesPresenter {
         self.interactor = interactor
     }
     
-    func toViewModel(model: ReceiptInfoResponse) -> RecipesViewModel {
-        var time: String
-        if let unwrappedTime = model.timeToCook {
-            time = String(unwrappedTime) + " мин"
-        } else {
-            time = "~30 мин"
-        }
-        
-        return RecipesViewModel(id: model.id, title: model.title, timeToCook: time, image: model.image)
+    func toViewModel(model: MyRecipe) -> RecipesViewModel {
+        return RecipesViewModel(id: model.id, title: model.title, timeToCook: "", image: model.image)
     }
 }
 
@@ -38,7 +31,8 @@ extension MyRecipesPresenter: MyRecipesViewOutput {
     }
         
     func didLoadView() {
-        interactor.loadMyRecipes()
+        self.recipes = interactor.loadMyRecipes()
+        self.view?.reloadData()
     }
     
     func didReceive() {
@@ -55,8 +49,18 @@ extension MyRecipesPresenter: MyRecipesViewOutput {
 }
 
 extension MyRecipesPresenter: MyRecipesInteractorOutput {
-    func didLoad(recipes: [ReceiptInfoResponse]) {
-        self.recipes.append(contentsOf: recipes.map { toViewModel(model: $0)})
+    func didLoad(recipes: [RecipesViewModel]) {
+        self.recipes = recipes
         self.view?.reloadData()
     }
 }
+
+extension MyRecipesPresenter: CreateReceiptModuleOutput {
+    func didSaveReceipt(with model: CreatedReceipt) {
+        let addedRecipe:RecipesViewModel = interactor.addRecipe(with: model)
+        self.recipes.append(addedRecipe)
+        self.view?.reloadData()
+    }
+}
+
+
