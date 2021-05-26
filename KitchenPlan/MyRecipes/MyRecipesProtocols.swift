@@ -43,4 +43,5 @@ protocol MyRecipesManagerDescription: AnyObject {
     func loadMyRecipes() -> [RecipesViewModel]
     func addToMyRecipes(with model: CreatedReceipt) -> RecipesViewModel
     func deleteMyRecipe(id: Int)
+    func getMyRecipe(id: Int) -> Receipt
 }

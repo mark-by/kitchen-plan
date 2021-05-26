@@ -48,4 +48,23 @@ extension MyRecipesManager: MyRecipesManagerDescription {
         realm.delete(realm.objects(MyRecipe.self).filter("id == %@", id))
         try! realm.commitWrite()
     }
+    
+    func getMyRecipe(id: Int) -> Receipt {
+        let recipe = realm.objects(MyRecipe.self).filter("id == %@", id)
+    
+        var ingredients = [IngredientViewModel]()
+        for ing in recipe[0].ingredients {
+            let temp = IngredientViewModel(id: 0, title: ing, image: nil, measure: nil, quantity: nil)
+            ingredients.append(temp)
+        }
+        
+        var steps = [String]()
+        for step in recipe[0].steps {
+            steps.append(step)
+        }
+        
+        let result = Receipt(id: recipe[0].id, image: recipe[0].image, title: recipe[0].title, time: nil,  type: recipe[0].type , steps: steps, ingredients: ingredients)
+        
+        return result
+    }
 }
