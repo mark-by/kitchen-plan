@@ -88,6 +88,6 @@ final class MainReceiptInfoCell: UITableViewCell {
 
         layout()
             
-        return CGSize(width: contentView.frame.width, height: timeToCook.frame.maxY + 10)
+        return CGSize(width: contentView.frame.width, height: typeLabel.frame.maxY + 10)
     }
 }
