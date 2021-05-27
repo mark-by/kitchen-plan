@@ -37,6 +37,31 @@ extension ReceiptPresenter: ReceiptModuleInput {
 }
 
 extension ReceiptPresenter: ReceiptViewOutput {
+    func isFavorite() -> Bool {
+        guard let receiptId = receiptId, let favorites = UserDefaults.standard.array(forKey: "favorites") as? [Int], let _ = favorites.firstIndex(of: receiptId) else {
+            return false
+        }
+        return true
+    }
+    
+    func didTapHeart() {
+        guard let receiptId = receiptId else {
+            return
+        }
+        guard var favorites = UserDefaults.standard.array(forKey: "favorites") as? [Int] else {
+            UserDefaults.standard.setValue([receiptId], forKey: "favorites")
+            return
+        }
+        if let _ = favorites.firstIndex(of: receiptId) {
+            UserDefaults.standard.setValue(favorites.filter { item in
+                item != receiptId
+            }, forKey: "favorites")
+        } else {
+            favorites.append(receiptId)
+            UserDefaults.standard.setValue(favorites, forKey: "favorites")
+        }
+    }
+    
     func didLoadView() {
         guard let receiptId = self.receiptId else {
             print("No receipt id in presenter")

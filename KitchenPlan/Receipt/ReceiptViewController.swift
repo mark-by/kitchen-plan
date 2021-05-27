@@ -5,6 +5,7 @@ import Kingfisher
 final class ReceiptViewController: UIViewController {
 	private let output: ReceiptViewOutput
     private let model: RecipesViewModel
+    private let favoriteButton = UIButton()
     
     private let table = UITableView()
     
@@ -35,18 +36,35 @@ final class ReceiptViewController: UIViewController {
         
         table.delegate = self
         table.dataSource = self
-
-        [table].forEach {
+        
+        favoriteButton.setImage(UIImage(systemName: output.isFavorite() ? "heart.fill" : "heart"), for: .normal)
+        favoriteButton.contentVerticalAlignment = .fill
+        favoriteButton.contentHorizontalAlignment = .fill
+        favoriteButton.tintColor = .init(red: 250/255, green: 112/255, blue: 102/255, alpha: 1)
+        favoriteButton.addTarget(self, action: #selector(didTapHeart), for: .touchUpInside)
+        
+        [table, favoriteButton].forEach {
             view.addSubview($0)
         }
         
         self.output.didLoadView()
     }
     
+    @objc func didTapHeart() {
+        favoriteButton.setImage(UIImage(systemName: output.isFavorite() ? "heart" : "heart.fill"), for: .normal)
+        output.didTapHeart()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         table.pin.all()
+        favoriteButton.pin
+            .height(32)
+            .width(40)
+            .top(10)
+            .right(10)
+    
     }
 }
 

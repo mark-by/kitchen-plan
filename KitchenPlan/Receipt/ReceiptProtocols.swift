@@ -14,6 +14,8 @@ protocol ReceiptViewInput: AnyObject {
 protocol ReceiptViewOutput: AnyObject {
     func didLoadView()
     func getModel() -> ReceiptModelView?
+    func isFavorite() -> Bool
+    func didTapHeart()
 }
 
 protocol ReceiptInteractorInput: AnyObject {
