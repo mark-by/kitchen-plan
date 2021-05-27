@@ -12,6 +12,7 @@ protocol MyRecipesViewInput: BaseRecipesViewInput {
 
 protocol MyRecipesViewOutput: BaseRecipesViewOutput {
     func didTapAdd()
+    func didDelete(at idx: Int)
 }
 
 protocol MyRecipesInteractorInput: AnyObject {

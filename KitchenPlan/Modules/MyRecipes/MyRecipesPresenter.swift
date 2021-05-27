@@ -39,6 +39,13 @@ extension MyRecipesPresenter: MyRecipesViewOutput {
         view?.reloadData()
     }
     
+    func didDelete(at idx: Int) {
+        interactor.deleteRecipe(id: recipes[idx].id)
+        self.recipes = recipes.filter { item in
+            item.id != recipes[idx].id
+        }
+    }
+    
     func count() -> Int {
         return recipes.count
     }
