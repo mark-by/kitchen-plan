@@ -14,6 +14,8 @@ final class CreateReceiptViewController: UIViewController {
         Section(title: "Шаги", cells: [CreateReceiptTextFieldCell()])
     ]
     private let table = UITableView()
+    
+    private var lastY: CGFloat = 0
 
     init(output: CreateReceiptViewOutput) {
         self.output = output
@@ -45,11 +47,52 @@ final class CreateReceiptViewController: UIViewController {
         table.dataSource = self
         
         view.backgroundColor = .white
-        
+                
         [table].forEach {
             view.addSubview($0)
         }
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow(notification:)), name:  UIResponder.keyboardWillShowNotification, object: nil )
+        NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillHide(notification:)), name:  UIResponder.keyboardWillHideNotification, object: nil )
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        
+        let keyboardRect = keyboardSize.cgRectValue
+        if view.frame.origin.y == 0 && lastY > view.frame.maxY - keyboardRect.height {
+            view.frame.origin.y -= (lastY - (view.frame.maxY - keyboardRect.height))
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    func beginEnter(at y: CGFloat) {
+        lastY = y
+        print("BEGIN ENTER \(y)")
+//        if y > 470 {
+//            view.frame.origin.y -= 120
+//        }
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

@@ -26,7 +26,7 @@ final class CreateReceiptTextFieldCell: InputCell {
         contentView.clipsToBounds = true
         backgroundColor = .white
         textField.overrideUserInterfaceStyle = .light
-        
+        textField.delegate = self
         button.addTarget(self, action: #selector(didTapButton), for: .touchDown)
         button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         button.imageView?.tintColor = .systemGreen
@@ -87,5 +87,15 @@ final class CreateReceiptTextFieldCell: InputCell {
         self.section = section
         self.row = row
         textField.placeholder = title
+    }
+}
+
+extension CreateReceiptTextFieldCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let point = contentView.superview?.convert(contentView.frame, to: nil) else {
+            return
+        }
+        
+        output?.beginEnter(at: point.minY)
     }
 }
