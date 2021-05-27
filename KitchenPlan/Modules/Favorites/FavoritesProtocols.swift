@@ -12,6 +12,7 @@ protocol FavoritesViewInput: BaseRecipesViewInput {
 
 protocol FavoritesViewOutput: BaseRecipesViewOutput {
     func didScrollEnd()
+    func didDelete(at idx: Int)
 }
 
 protocol FavoritesInteractorInput: AnyObject {

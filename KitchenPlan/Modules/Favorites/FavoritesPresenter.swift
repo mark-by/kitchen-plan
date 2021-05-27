@@ -34,6 +34,17 @@ extension FavoritesPresenter: FavoritesModuleInput {
 }
 
 extension FavoritesPresenter: FavoritesViewOutput {
+    func didDelete(at idx: Int) {
+        let receiptId = recipes[idx].id
+        UserDefaults.standard.setValue(getFavorites().filter { item in
+            item != receiptId
+        }, forKey: "favorites")
+        
+        self.recipes = recipes.filter { item in
+            item.id != receiptId
+        }
+    }
+    
     func didScrollEnd() {
         interactor.loadRecipes(since: self.recipes.last?.id ?? 0, recipes: getFavorites())
     }
