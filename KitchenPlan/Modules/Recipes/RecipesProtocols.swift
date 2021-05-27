@@ -1,6 +1,6 @@
 import UIKit
 
-protocol RecipesViewOutput: OverallRecipesViewOutput {
+protocol RecipesViewOutput: BaseRecipesViewOutput {
     func didScrollEnd()
     func didSearch(text: String)
     func didSelectType(type: String?)
@@ -10,7 +10,7 @@ protocol RecipesViewOutput: OverallRecipesViewOutput {
     func canFilterByIngredients() -> Bool
 }
 
-protocol RecipesViewInput: OverallRecipesViewInput {
+protocol RecipesViewInput: BaseRecipesViewInput {
 }
 
 protocol RecipesInteractorInput: AnyObject {

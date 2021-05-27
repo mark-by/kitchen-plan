@@ -1,27 +1,27 @@
 import UIKit
 import PinLayout
 
-protocol OverallRecipesDataSource: AnyObject {
+protocol BaseRecipesDelgate: AnyObject {
     func setImage(view: UIImageView, with source: String)
 }
 
-protocol OverallRecipesViewOutput: AnyObject {
+protocol BaseRecipesViewOutput: AnyObject {
     func didLoadView()
     func count() -> Int
     func item(idx: Int) -> RecipesViewModel
     func didSelectItem(at index: Int)
 }
 
-protocol OverallRecipesViewInput: AnyObject {
+protocol BaseRecipesViewInput: AnyObject {
     func reloadData()
 }
 
-class OverallRecipesViewController: UIViewController {
+class BaseRecipesViewController: UIViewController {
     internal let tableView = UITableView()
-    internal let output: OverallRecipesViewOutput
-    internal var dataSource: OverallRecipesDataSource?
+    internal let output: BaseRecipesViewOutput
+    internal var dataSource: BaseRecipesDelgate?
 
-    init(output: OverallRecipesViewOutput) {
+    init(output: BaseRecipesViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
     }
@@ -52,7 +52,7 @@ class OverallRecipesViewController: UIViewController {
     }
 }
 
-extension OverallRecipesViewController: UITableViewDelegate, UITableViewDataSource {
+extension BaseRecipesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         output.count()
     }
@@ -83,7 +83,7 @@ extension OverallRecipesViewController: UITableViewDelegate, UITableViewDataSour
     }
 }
 
-extension OverallRecipesViewController: OverallRecipesViewInput {
+extension BaseRecipesViewController: BaseRecipesViewInput {
     func reloadData() {
         self.tableView.refreshControl?.endRefreshing()
         self.tableView.reloadData()

@@ -1,7 +1,7 @@
 import UIKit
 import PinLayout
 
-final class RecipesViewController: OverallRecipesViewController {
+final class RecipesViewController: BaseRecipesViewController {
     private let searchContoller = UISearchController()
     private let finalOutput: RecipesViewOutput
     
@@ -64,7 +64,7 @@ extension RecipesViewController: UISearchResultsUpdating {
     }
 }
 
-extension RecipesViewController: OverallRecipesDataSource {
+extension RecipesViewController: BaseRecipesDelgate {
     func setImage(view: UIImageView, with source: String) {
         view.kf.setImage(
             with: URL(string: source),

@@ -7,10 +7,10 @@ protocol MyRecipesModuleInput {
 protocol MyRecipesModuleOutput: AnyObject {
 }
 
-protocol MyRecipesViewInput: OverallRecipesViewInput {
+protocol MyRecipesViewInput: BaseRecipesViewInput {
 }
 
-protocol MyRecipesViewOutput: OverallRecipesViewOutput {
+protocol MyRecipesViewOutput: BaseRecipesViewOutput {
     func didTapAdd()
 }
 

@@ -1,6 +1,6 @@
 import UIKit
 
-final class MyRecipesViewController: OverallRecipesViewController {
+final class MyRecipesViewController: BaseRecipesViewController {
     private let finalOutput: MyRecipesViewOutput
     private var addButton: UIBarButtonItem?
 
@@ -31,7 +31,7 @@ final class MyRecipesViewController: OverallRecipesViewController {
     }
 }
 
-extension MyRecipesViewController: OverallRecipesDataSource {
+extension MyRecipesViewController: BaseRecipesDelgate {
     func setImage(view: UIImageView, with source: String) {
         view.image = UIImage(named: "receptPlaceholder")
     }
