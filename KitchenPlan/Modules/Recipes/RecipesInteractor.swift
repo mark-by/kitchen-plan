@@ -15,7 +15,7 @@ extension RecipesInteractor: RecipesInteractorInput {
         
         isFetching = true
         recipesManager.loadRecipes(since: since, limit: limit,
-                                   title: title, type: type, ingredients: ingredients) { [weak self] (result) in
+                                   title: title, type: type, ingredients: ingredients, recipes: []) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let recipes):

@@ -22,6 +22,12 @@
 		6D28626F265E854F00E896FB /* CreateReceiptTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28626E265E854F00E896FB /* CreateReceiptTypeCell.swift */; };
 		6D286272265EA64A00E896FB /* MyRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D286271265EA64A00E896FB /* MyRecipe.swift */; };
 		6D286276265FB33600E896FB /* BaseRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D286275265FB33600E896FB /* BaseRecipesViewController.swift */; };
+		6D28627E265FEBD500E896FB /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D286278265FEBD500E896FB /* FavoritesPresenter.swift */; };
+		6D28627F265FEBD500E896FB /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D286279265FEBD500E896FB /* FavoritesRouter.swift */; };
+		6D286280265FEBD500E896FB /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28627A265FEBD500E896FB /* FavoritesViewController.swift */; };
+		6D286281265FEBD500E896FB /* FavoritesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28627B265FEBD500E896FB /* FavoritesProtocols.swift */; };
+		6D286282265FEBD500E896FB /* FavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28627C265FEBD500E896FB /* FavoritesInteractor.swift */; };
+		6D286283265FEBD500E896FB /* FavoritesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28627D265FEBD500E896FB /* FavoritesContainer.swift */; };
 		6D2B8A4C2634A97D00324BF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8A4B2634A97D00324BF2 /* AppDelegate.swift */; };
 		6D2B8A4E2634A97D00324BF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8A4D2634A97D00324BF2 /* SceneDelegate.swift */; };
 		6D2B8A522634A97E00324BF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D2B8A512634A97E00324BF2 /* Assets.xcassets */; };
@@ -129,6 +135,12 @@
 		6D28626E265E854F00E896FB /* CreateReceiptTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReceiptTypeCell.swift; sourceTree = "<group>"; };
 		6D286271265EA64A00E896FB /* MyRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipe.swift; sourceTree = "<group>"; };
 		6D286275265FB33600E896FB /* BaseRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecipesViewController.swift; sourceTree = "<group>"; };
+		6D286278265FEBD500E896FB /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
+		6D286279265FEBD500E896FB /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
+		6D28627A265FEBD500E896FB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		6D28627B265FEBD500E896FB /* FavoritesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesProtocols.swift; sourceTree = "<group>"; };
+		6D28627C265FEBD500E896FB /* FavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInteractor.swift; sourceTree = "<group>"; };
+		6D28627D265FEBD500E896FB /* FavoritesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesContainer.swift; sourceTree = "<group>"; };
 		6D2B8A482634A97D00324BF2 /* KitchenPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2B8A4B2634A97D00324BF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D2B8A4D2634A97D00324BF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -346,6 +358,7 @@
 		6D286274265FB0C100E896FB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6D286277265FEBBF00E896FB /* Favorites */,
 				AF03DF7D265BF1D80003F2F8 /* Ingredients */,
 				AF9CFC7D265965A400198953 /* IngredientSearch */,
 				6DEC3ABC2659444A0076965A /* CreateReceipt */,
@@ -357,6 +370,19 @@
 				6D02106A2634AC7500C5D2DF /* Recipes */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		6D286277265FEBBF00E896FB /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				6D286278265FEBD500E896FB /* FavoritesPresenter.swift */,
+				6D286279265FEBD500E896FB /* FavoritesRouter.swift */,
+				6D28627A265FEBD500E896FB /* FavoritesViewController.swift */,
+				6D28627B265FEBD500E896FB /* FavoritesProtocols.swift */,
+				6D28627C265FEBD500E896FB /* FavoritesInteractor.swift */,
+				6D28627D265FEBD500E896FB /* FavoritesContainer.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		6D2B8A3F2634A97D00324BF2 = {
@@ -830,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D28627F265FEBD500E896FB /* FavoritesRouter.swift in Sources */,
 				6DD29B0F26363702008AFE6A /* developData.swift in Sources */,
 				6DEC3ABA265937990076965A /* MyRecipesInteractor.swift in Sources */,
 				6DEC3AB7265937990076965A /* MyRecipesRouter.swift in Sources */,
@@ -859,7 +886,10 @@
 				6D02107D2634B08400C5D2DF /* NavigationBarViewController.swift in Sources */,
 				6D5C27C32643F588002C5410 /* RecipesRouter.swift in Sources */,
 				6D5C27D52644549B002C5410 /* OrderedList.swift in Sources */,
+				6D286282265FEBD500E896FB /* FavoritesInteractor.swift in Sources */,
+				6D286281265FEBD500E896FB /* FavoritesProtocols.swift in Sources */,
 				AF03DF8C265BF1D80003F2F8 /* IngredientsViewController.swift in Sources */,
+				6D28627E265FEBD500E896FB /* FavoritesPresenter.swift in Sources */,
 				6DEC3AB6265937990076965A /* MyRecipesPresenter.swift in Sources */,
 				AF03DF8B265BF1D80003F2F8 /* IngredientsInteractor.swift in Sources */,
 				6DEC3AA8265924B20076965A /* ProfileContainer.swift in Sources */,
@@ -886,11 +916,13 @@
 				6DEC3AD1265944700076965A /* CreateReceiptViewController.swift in Sources */,
 				6DE0C92A26413ED200E84438 /* ReceiptContainer.swift in Sources */,
 				AF9CFC85265965C200198953 /* IngredientSearchRouter.swift in Sources */,
+				6D286280265FEBD500E896FB /* FavoritesViewController.swift in Sources */,
 				6DEC3AA6265924B20076965A /* ProfileProtocols.swift in Sources */,
 				6DD29B062634E166008AFE6A /* RecipesTableViewCell.swift in Sources */,
 				AF9CFC89265965C200198953 /* IngredientSearchContainer.swift in Sources */,
 				6DEC3AB9265937990076965A /* MyRecipesProtocols.swift in Sources */,
 				6DEC3AA3265924B20076965A /* ProfilePresenter.swift in Sources */,
+				6D286283265FEBD500E896FB /* FavoritesContainer.swift in Sources */,
 				6DEC3AA7265924B20076965A /* ProfileInteractor.swift in Sources */,
 				6DE0C93A2641433500E84438 /* IngredientInteractor.swift in Sources */,
 				AF03DF8E265BF1D80003F2F8 /* IngredientsManager.swift in Sources */,

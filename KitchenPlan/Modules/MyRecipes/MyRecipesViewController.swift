@@ -9,7 +9,7 @@ final class MyRecipesViewController: BaseRecipesViewController {
 
         super.init(output: output)
         
-        dataSource = self
+        delegate = self
     }
 
     @available(*, unavailable)

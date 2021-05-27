@@ -5,6 +5,7 @@ final class ProfileViewController: UIViewController {
     private let tableView = UITableView()
     private let actions = [
         ProfileAction(title: "Мои рецепты", image: "chef"),
+        ProfileAction(title: "Избранное", image: "__heart.fill")
     ]
 
     init(output: ProfileViewOutput) {
@@ -53,6 +54,8 @@ extension ProfileViewController: UITableViewDelegate {
         switch actions[indexPath.row].title {
         case "Мои рецепты":
             output.didSelectMyRecipes()
+        case "Избранное":
+            output.didSelectFavorites()
         default:
             print("fail: unknown action")
         }

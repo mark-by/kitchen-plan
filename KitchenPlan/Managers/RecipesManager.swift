@@ -10,6 +10,7 @@ protocol RecipesManagerDescription: AnyObject {
                      title: String?,
                      type: String?,
                      ingredients: [Int],
+                     recipes: [Int],
                      completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void)
     func loadReceipt(id: Int, completion: @escaping (Result<Receipt, Error>) -> Void)
 }
@@ -54,13 +55,15 @@ extension RecipesManager: RecipesManagerDescription {
                      title: String? = nil,
                      type: String? = nil,
                      ingredients: [Int],
+                     recipes: [Int],
                      completion: @escaping (Result<[ReceiptInfoResponse], Error>) -> Void) {
         
         guard let url = URL(string: backHost + genPath(since: since,
                                                        limit: limit,
                                                        title: title,
                                                        type: type,
-                                                       ingredients: ingredients)) else {
+                                                       ingredients: ingredients,
+                                                       recipes: recipes)) else {
             completion(.failure(NetworkError.unexpected))
             return
         }
@@ -89,7 +92,7 @@ extension RecipesManager: RecipesManagerDescription {
         task.resume()
     }
     
-    func genPath(since: Int, limit: Int, title: String?, type: String?, ingredients: [Int]) -> String {
+    func genPath(since: Int, limit: Int, title: String?, type: String?, ingredients: [Int], recipes: [Int]) -> String {
         var path = "/recipes?since=\(since)&limit=\(limit)"
         if let unwrappedTitle = title {
             if unwrappedTitle != "" {
@@ -100,14 +103,17 @@ extension RecipesManager: RecipesManagerDescription {
             path += "&type=\(unwrappedType.uppercased())"
         }
         if ingredients.count > 0 {
-            path += genIngredientsQueryArgs(ingredients: ingredients)
+            path += genMultiQueryArgs(ids: ingredients, title: "ingredients")
+        }
+        if recipes.count > 0 {
+            path += genMultiQueryArgs(ids: recipes, title: "id")
         }
         return path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? path
     }
     
-    func genIngredientsQueryArgs(ingredients: [Int]) -> String {
-        return ingredients.reduce("") { prev, curr in
-            "\(prev)&ingredients=\(curr)"
+    func genMultiQueryArgs(ids: [Int], title: String) -> String {
+        return ids.reduce("") { prev, curr in
+            "\(prev)&\(title)=\(curr)"
         }
     }
 }

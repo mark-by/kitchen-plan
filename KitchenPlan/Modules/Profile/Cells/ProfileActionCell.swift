@@ -32,6 +32,8 @@ final class ProfileActionCell: UITableViewCell {
         arrowImage.image = UIImage(systemName: "chevron.forward")
         arrowImage.tintColor = .gray
         
+        iconView.contentMode = .scaleAspectFit
+        
         [iconView, titleLabel, arrowImage].forEach {
             contentView.addSubview($0)
         }
@@ -65,7 +67,12 @@ final class ProfileActionCell: UITableViewCell {
     }
     
     func configure(with model: ProfileAction) {
-        iconView.image = UIImage(named: model.image)
+        if model.image.starts(with: "__") {
+            iconView.image = UIImage(systemName: String(model.image.dropFirst(2)))
+            iconView.tintColor = .black
+        } else {
+            iconView.image = UIImage(named: model.image)
+        }
         titleLabel.text = model.title
     }
 }

@@ -12,9 +12,9 @@ final class NavigationBarContainer {
         let ingredeitnsContainer = IngredientsContainer.assemble()
         let profileContainer = ProfileContainer.assemble()
         
-        let bar = NavigationBarViewController(recipes: recipesContainer.viewController,
-                                              products: ingredeitnsContainer.viewController,
-                                              profile: profileContainer.viewController)
+        let bar = NavigationBarViewController(recipes: UINavigationController(rootViewController: recipesContainer.viewController),
+                                              products: UINavigationController(rootViewController: ingredeitnsContainer.viewController),
+                                              profile: UINavigationController(rootViewController: profileContainer.viewController))
         
         return NavigationBarContainer(viewController: bar)
     }

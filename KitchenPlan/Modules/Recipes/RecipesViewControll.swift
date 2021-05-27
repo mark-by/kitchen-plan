@@ -16,7 +16,7 @@ final class RecipesViewController: BaseRecipesViewController {
     }
     
     override func viewDidLoad() {
-        dataSource = self
+        delegate = self
 
         let filter = UIBarButtonItem(
             image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(didTapFilterButton))

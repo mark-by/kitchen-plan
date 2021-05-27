@@ -19,7 +19,7 @@ protocol BaseRecipesViewInput: AnyObject {
 class BaseRecipesViewController: UIViewController {
     internal let tableView = UITableView()
     internal let output: BaseRecipesViewOutput
-    internal var dataSource: BaseRecipesDelgate?
+    internal var delegate: BaseRecipesDelgate?
 
     init(output: BaseRecipesViewOutput) {
         self.output = output
@@ -64,7 +64,7 @@ extension BaseRecipesViewController: UITableViewDelegate, UITableViewDataSource 
         
         let viewModel = output.item(idx: indexPath.row)
         cell.configure(with: viewModel, setImage: {imageView, imageUrl in
-            dataSource?.setImage(view: imageView, with: imageUrl)
+            delegate?.setImage(view: imageView, with: imageUrl)
         })
 
         return cell

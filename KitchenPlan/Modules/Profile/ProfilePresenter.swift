@@ -20,6 +20,10 @@ extension ProfilePresenter: ProfileViewOutput {
     func didSelectMyRecipes() {
         router.showMyRecipes()
     }
+    
+    func didSelectFavorites() {
+        router.showFavorites()
+    }
 }
 
 extension ProfilePresenter: ProfileInteractorOutput {

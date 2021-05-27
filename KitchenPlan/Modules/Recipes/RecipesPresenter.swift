@@ -120,7 +120,6 @@ extension RecipesPresenter: RecipesViewOutput {
     }
     
     func selected() -> (String?, Bool) {
-        
         return (searchType, searchByIngredients && canFilterByIngredients())
     }
     

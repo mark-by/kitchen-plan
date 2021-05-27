@@ -18,7 +18,7 @@ final class ProfileContainer {
                 
         router.sourceViewController = viewController
 
-        return ProfileContainer(view: UINavigationController(rootViewController: viewController), input: presenter, router: router)
+        return ProfileContainer(view: viewController, input: presenter, router: router)
 	}
 
     private init(view: UIViewController, input: ProfileModuleInput, router: ProfileRouterInput) {

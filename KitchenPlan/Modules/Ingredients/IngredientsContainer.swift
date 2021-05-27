@@ -25,6 +25,6 @@ final class IngredientsContainer {
         interactor.output = presenter
         presenter.view = ingredientsViewController
 
-        return IngredientsContainer(view: UINavigationController(rootViewController: ingredientsViewController), input: presenter, router: router)
+        return IngredientsContainer(view: ingredientsViewController, input: presenter, router: router)
     }
 }

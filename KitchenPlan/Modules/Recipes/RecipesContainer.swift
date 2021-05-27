@@ -23,9 +23,7 @@ final class RecipesContainer {
         router.sourceViewController = recipesViewController
         interactor.output = presenter
         presenter.view = recipesViewController
-
-        let viewController = UINavigationController(rootViewController: recipesViewController)
         
-        return RecipesContainer(viewController: viewController)
+        return RecipesContainer(viewController: recipesViewController)
     }
 }
