@@ -1,6 +1,12 @@
 import Foundation
 import RealmSwift
 
+protocol IngredientsManagerDescription: AnyObject {
+    func getIngredients() -> [IngredientViewModel]
+    func save(in model: IngredientViewModel)
+    func delete(for id: Int)
+}
+
 final class IngredientsManager {
     static let shared: IngredientsManagerDescription = IngredientsManager()
     private let realm = try! Realm()

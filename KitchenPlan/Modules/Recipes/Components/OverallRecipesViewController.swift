@@ -1,32 +1,41 @@
 import UIKit
+import PinLayout
 
-final class MyRecipesViewController: UIViewController {
-    private let tableView = UITableView()
-    private let output: MyRecipesViewOutput
-    private var addButton: UIBarButtonItem?
+protocol OverallRecipesDataSource: AnyObject {
+    func setImage(view: UIImageView, with source: String)
+}
 
-    init(output: MyRecipesViewOutput) {
+protocol OverallRecipesViewOutput: AnyObject {
+    func didLoadView()
+    func count() -> Int
+    func item(idx: Int) -> RecipesViewModel
+    func didSelectItem(at index: Int)
+}
+
+protocol OverallRecipesViewInput: AnyObject {
+    func reloadData()
+}
+
+class OverallRecipesViewController: UIViewController {
+    internal let tableView = UITableView()
+    internal let output: OverallRecipesViewOutput
+    internal var dataSource: OverallRecipesDataSource?
+
+    init(output: OverallRecipesViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
     }
 
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        title = "Мои рецепты"
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(didTapAddButton))
-        
         overrideNavigateBar(navigationController?.navigationBar)
+        view.backgroundColor = .white
         
-        tableView.register(RecipesTableViewCell.self, forCellReuseIdentifier: "MyRecipesTableViewCell")
-        
+        tableView.register(RecipesTableViewCell.self, forCellReuseIdentifier: "RecipesTableViewCell")
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
 
@@ -41,26 +50,23 @@ final class MyRecipesViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.pin.all()
     }
-    
-    @objc func didTapAddButton() {
-        output.didTapAdd()
-    }
 }
 
-extension MyRecipesViewController: UITableViewDelegate, UITableViewDataSource {
+extension OverallRecipesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         output.count()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyRecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else {
             return .init()
         }
         
         let viewModel = output.item(idx: indexPath.row)
-        cell.configure(with: viewModel) { view, path in
-            view.image = UIImage(named: "receptPlaceholder")
-        }
+        cell.configure(with: viewModel, setImage: {imageView, imageUrl in
+            dataSource?.setImage(view: imageView, with: imageUrl)
+        })
+
         return cell
     }
     
@@ -77,7 +83,7 @@ extension MyRecipesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MyRecipesViewController: MyRecipesViewInput {
+extension OverallRecipesViewController: OverallRecipesViewInput {
     func reloadData() {
         self.tableView.refreshControl?.endRefreshing()
         self.tableView.reloadData()

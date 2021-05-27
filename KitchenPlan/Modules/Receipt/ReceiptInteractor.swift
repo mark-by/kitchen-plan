@@ -2,7 +2,7 @@ import Foundation
 
 final class ReceiptInteractor {
 	weak var output: ReceiptInteractorOutput?
-    private let manager: ReceiptManagerDescription = ReceiptManager.shared
+    private let manager: RecipesManagerDescription = RecipesManager.shared
     private let managerMyRecipes: MyRecipesManagerDescription = MyRecipesManager.shared
     var fromDB = false
 }

@@ -37,9 +37,3 @@ protocol IngredientsRouterInput: AnyObject {
     func showIngredient(with model: IngredientViewModel)
     func showIngredientSearch()
 }
-
-protocol IngredientsManagerDescription: AnyObject {
-    func getIngredients() -> [IngredientViewModel]
-    func save(in model: IngredientViewModel)
-    func delete(for id: Int)
-}

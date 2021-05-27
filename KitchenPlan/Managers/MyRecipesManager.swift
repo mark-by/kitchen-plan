@@ -1,6 +1,13 @@
 import Foundation
 import RealmSwift
 
+protocol MyRecipesManagerDescription: AnyObject {
+    func loadMyRecipes() -> [RecipesViewModel]
+    func addToMyRecipes(with model: CreatedReceipt) -> RecipesViewModel
+    func deleteMyRecipe(id: Int)
+    func getMyRecipe(id: Int) -> Receipt
+}
+
 final class MyRecipesManager {
     static let shared: MyRecipesManagerDescription = MyRecipesManager()
     private let realm = try! Realm()

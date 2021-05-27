@@ -1,22 +1,16 @@
 import UIKit
 
-protocol RecipesViewOutput: AnyObject {
-    func didLoadView()
+protocol RecipesViewOutput: OverallRecipesViewOutput {
     func didScrollEnd()
     func didSearch(text: String)
     func didSelectType(type: String?)
     func didToggleIngredients(isActive: Bool)
     func didSelectFromMenu()
-    
     func selected() -> (String?, Bool)
     func canFilterByIngredients() -> Bool
-    func count() -> Int
-    func item(idx: Int) -> RecipesViewModel
-    func didSelectItem(at index: Int)
 }
 
-protocol RecipesViewInput: AnyObject {
-    func reloadData()
+protocol RecipesViewInput: OverallRecipesViewInput {
 }
 
 protocol RecipesInteractorInput: AnyObject {
