@@ -64,7 +64,6 @@ extension ReceiptPresenter: ReceiptViewOutput {
     
     func didLoadView() {
         guard let receiptId = self.receiptId else {
-            print("No receipt id in presenter")
             return
         }
         

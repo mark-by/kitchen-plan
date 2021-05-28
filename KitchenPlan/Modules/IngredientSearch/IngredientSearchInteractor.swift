@@ -54,7 +54,6 @@ extension IngredientSearchInteractor: IngredientSearchInteractorInput {
                 case .success(let ingredients):
                     self?.output?.didLoad(with: ingredients)
                 case .failure(let error):
-                    print("Fail to fetch recipes ", error)
                     self?.output?.didRecieve()
                 }
             }

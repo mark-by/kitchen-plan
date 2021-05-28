@@ -20,7 +20,6 @@ extension FavoritesInteractor: FavoritesInteractorInput {
                     self?.output?.didLoad(recipes: recipes)
                     self?.isFetching = false
                 case .failure(let error):
-                    print("Fail to fetch recipes ", error)
                     self?.output?.didReceive()
                     self?.isFetching = false
                 }

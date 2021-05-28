@@ -21,8 +21,7 @@ extension RecipesInteractor: RecipesInteractorInput {
                 case .success(let recipes):
                     self?.output?.didLoad(recipes: recipes)
                     self?.isFetching = false
-                case .failure(let error):
-                    print("Fail to fetch recipes ", error)
+                case .failure(_):
                     self?.output?.didReceive()
                     self?.isFetching = false
                 }

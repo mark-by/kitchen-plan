@@ -88,10 +88,6 @@ final class CreateReceiptViewController: UIViewController {
     
     func beginEnter(at y: CGFloat) {
         lastY = y
-        print("BEGIN ENTER \(y)")
-//        if y > 470 {
-//            view.frame.origin.y -= 120
-//        }
     }
     
     override func viewDidLayoutSubviews() {
