@@ -23,6 +23,7 @@ extension ReceiptInteractor: ReceiptInteractorInput {
                 case .success(let receipt):
                     self?.output?.didLoad(with: receipt)
                 case .failure(let error):
+                    print("fail load from back: \(error)")
                 }
             }
         }

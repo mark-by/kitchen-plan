@@ -15,6 +15,7 @@ protocol IngredientsViewOutput: AnyObject {
     func item(idx: Int) -> IngredientViewModel
     func didSelectItem(at index: Int)
     func didDelete(for idx: Int)
+    func didDelete(for items: [Int])
 }
 
 protocol IngredientsViewInput: AnyObject {

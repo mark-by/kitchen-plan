@@ -9,6 +9,13 @@ final class IngredientsViewController: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
     }()
     private let output: IngredientsViewOutput
+    private var trashButton: UIBarButtonItem {
+        UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(didTapTrash))
+    }
+    private var leftButtons: [UIBarButtonItem] {
+        [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDelete)),
+         UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelDelete))]
+    }
 
     init(output: IngredientsViewOutput) {
         self.output = output
@@ -47,7 +54,9 @@ final class IngredientsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(didTapAdd)
         )
-
+        
+        navigationItem.leftBarButtonItem = trashButton
+        
         view.backgroundColor = .white
 
         configureCollectionView()
@@ -56,11 +65,38 @@ final class IngredientsViewController: UIViewController {
         output.didLoadView()
     }
     
+    @objc func didTapTrash() {
+        collectionView.isEditing = true
+        navigationItem.setLeftBarButtonItems(leftButtons, animated: true)
+        collectionView.reloadData()
+    }
+    
+    @objc func doneDelete() {
+        let itemsToDelete = collectionView.indexPathsForSelectedItems ?? []
+        output.didDelete(for: itemsToDelete.map {$0.item})
+        collectionView.deleteItems(at: itemsToDelete)
+        if let cells = collectionView.visibleCells as? [IngredientsViewCell] {
+            cells.forEach { cell in
+                cell.resetCheckbox()
+            }
+        }
+
+        cancelDelete()
+    }
+    
+    @objc func cancelDelete() {
+        collectionView.isEditing = false
+        navigationItem.setLeftBarButtonItems([], animated: true)
+        navigationItem.setLeftBarButton(trashButton, animated: true)
+        collectionView.reloadData()
+    }
+    
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(IngredientsViewCell.self, forCellWithReuseIdentifier: IngredientsViewCell.indetifier)
         collectionView.backgroundColor = UIColor.white
+        collectionView.allowsMultipleSelectionDuringEditing = true
     }
     
     @objc func didTapAdd() {
@@ -91,7 +127,7 @@ extension IngredientsViewController: UICollectionViewDelegate, UICollectionViewD
             return .init()
         }
         
-        cell.configure(with: output.item(idx: indexPath.item))
+        cell.configure(with: output.item(idx: indexPath.item), isEditing: collectionView.isEditing)
         return cell
     }
 
@@ -115,6 +151,9 @@ extension IngredientsViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView.isEditing  {
+            return
+        }
         let alert = UIAlertController(title: output.item(idx: indexPath.item).title, message: nil, preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "ОК", style: .cancel, handler: {action in
@@ -124,7 +163,7 @@ extension IngredientsViewController: UICollectionViewDelegate, UICollectionViewD
                 self?.output.didDelete(for: id)
             }
         }))
-        
+
         present(alert, animated: true, completion: nil)
     }
 }

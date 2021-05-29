@@ -16,10 +16,24 @@ final class IngredientsPresenter {
 }
 
 extension IngredientsPresenter: IngredientsViewOutput, IngredientsInteractorOutput, IngredientSearchModuleOutput, IngredientsModuleInput {
+    
+    func didDelete(for items: [Int]) {
+        items.forEach {
+            interactor.delete(for: ingredients[$0].id)
+        }
+        let itemsIds = items.map {ingredients[$0].id}
+        ingredients = ingredients.filter { item in
+            !itemsIds.contains(item.id)
+        }
+    }
+    
     func didDelete(for idx: Int) {
         interactor.delete(for: idx)
 
-        interactor.load()
+        ingredients = ingredients.filter { item in
+            item.id != idx
+        }
+        
         view?.reloadData()
     }
 
